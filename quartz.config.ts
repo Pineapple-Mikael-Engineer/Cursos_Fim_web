@@ -29,14 +29,14 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-	  light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#fbfbf8",
+          lightgray: "#e7e5df",
+          gray: "#7b776d",
+          darkgray: "#4f4b42",
+          dark: "#23211c",
+          secondary: "#4f7a8a",
+          tertiary: "#6f8d68",
+          highlight: "rgba(79, 122, 138, 0.14)",
           textHighlight: "#b3aa0288",
         },
         darkMode: {
@@ -89,7 +89,7 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // Plugin.CustomOgImages(),
     ],
   },
 }
