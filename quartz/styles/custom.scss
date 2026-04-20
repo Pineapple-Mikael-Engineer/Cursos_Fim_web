@@ -1179,7 +1179,9 @@ body,
 /* ══════════════════════════════════════════════════════════════
    FÓRMULAS LaTeX
    ══════════════════════════════════════════════════════════════ */
-.markdown-preview-view .katex-display {
+.katex-display,
+.markdown-preview-view .katex-display,
+.math.math-block {
   display: block !important;
   margin: 1.2em 0 !important;
   padding: 14px 20px !important;
@@ -1191,21 +1193,16 @@ body,
   overflow-y: hidden !important;
 }
 
+.katex-display > .katex,
 .markdown-preview-view .katex-display > .katex {
   display: inline-block !important;
   max-width: 100%;
 }
 
 .math.math-block {
-  display: block !important;
-  background-color: var(--math-formula-bg) !important;
-  border: 1px solid var(--math-formula-bd) !important;
-  border-radius: 10px !important;
   padding: 20px 32px !important;
   margin: 24px auto !important;
   text-align: center !important;
-  box-shadow: var(--shadow-float) !important;
-  overflow-x: auto !important;
   width: fit-content !important;
   max-width: 100% !important;
 }
