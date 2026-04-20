@@ -1197,6 +1197,17 @@ body,
 .markdown-preview-view .katex-display > .katex {
   display: inline-block !important;
   max-width: 100%;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.katex,
+.markdown-preview-view .katex {
+  border: 1px solid var(--math-formula-bd) !important;
+  border-radius: 6px !important;
+  background-color: var(--math-formula-bg) !important;
+  padding: 0.08em 0.3em !important;
 }
 
 .math.math-block {
