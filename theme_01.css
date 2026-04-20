@@ -1,0 +1,1696 @@
+/* ╔═══════════════════════════════════════════════════════════════════╗
+   ║  OCEAN-ICE & FOREST  ·  Tema matemático para Obsidian 1.12+     ║
+   ║  Versión 5.1  ·  SVG iconografía propia                         ║
+   ╠═══════════════════════════════════════════════════════════════════╣
+   ║  INSTALACIÓN:                                                    ║
+   ║  Copia la CARPETA completa a: Tu-Boveda/.obsidian/themes/        ║
+   ║  Configuración → Apariencia → Temas → OCEAN-ICE & FOREST         ║
+   ╠═══════════════════════════════════════════════════════════════════╣
+   ║  NAVEGAR (Ctrl+F):                                               ║
+   ║  §1 OCEAN-ICE  §2 FOREST  §3 LAYOUT  §4 TYPOGRAPHY              ║
+   ║  §5 CALLOUTS   §6 MATH                                          ║
+   ╠═══════════════════════════════════════════════════════════════════╣
+   ║  CORRECCIONES v5.1:                                              ║
+   ║  · Light: --background-secondary y -primary-alt alineados con   ║
+   ║    --sidebar-bg (#BDD0AC) para evitar banding en paneles         ║
+   ║  · .callout-content color explícito en todos los entornos math   ║
+   ║  · .workspace-leaf usa --bg-secondary en dark (menos duro que   ║
+   ║    ocean-abyss) para los gaps entre notas flotantes              ║
+   ╠═══════════════════════════════════════════════════════════════════╣
+   ║  ENTORNOS MATEMÁTICOS:                                           ║
+   ║  [!teorema]      cuadrado Th + ∎ flotante                       ║
+   ║  [!demostracion] pluma + borde dashed + □ QED                   ║
+   ║  [!teoria]       ola + barra gradiente lateral                  ║
+   ║  [!definicion]   libro abierto + badge                          ║
+   ║  [!corolario]    cuadrado → flecha (consecuencia)               ║
+   ║  [!lema]         nodo de red (auxiliar)                         ║
+   ║  [!proposicion]  escalones ascendentes                          ║
+   ║  [!axioma]       pilares + capitel (fundamento)                 ║
+   ║  [!ejemplo]      flecha curva + puntos                          ║
+   ╚═══════════════════════════════════════════════════════════════════╝ */
+
+
+/* §1 ══════════════════════════════════════════════════════════════
+   OCEAN-ICE · Variables · Modo oscuro
+
+   PALETAS:
+   ICE:   #F0FBFA · #CBE4ED · #87ADC6 · #578098 · #203038
+   OCEAN: #081F2F · #243D52 · #495F73 · #738496 · #ACBCCC
+   FJORD: #0E1A2B · #425A73 · #6E8DAA · #BFC9D9 · #E6EEF6
+   ══════════════════════════════════════════════════════════════ */
+.theme-dark {
+
+  /* OCEAN: fondos */
+  --ocean-abyss:    #081F2F;
+  --ocean-deep:     #0E1A2B;
+  --ocean-mid:      #243D52;
+  --ocean-shelf:    #425A73;
+  --ocean-surface:  #495F73;
+
+  /* ICE: textos y acentos fríos */
+  --ice-deep:       #203038;
+  --ice-shadow:     #578098;
+  --ice-mid:        #87ADC6;
+  --ice-bright:     #CBE4ED;
+  --ice-shine:      #F0FBFA;
+
+  /* FJORD: puente entre ambos */
+  --fjord-dark:     #0E1A2B;
+  --fjord-mid:      #425A73;
+  --fjord-blue:     #6E8DAA;
+  --fjord-drift:    #BFC9D9;
+  --fjord-glow:     #E6EEF6;
+
+  /* Complementos */
+  --steel:          #738496;
+  --lightsteele:    #ACBCCC;
+
+  /* FONDOS */
+  --bg-primary:      var(--ocean-abyss);
+  --bg-secondary:    var(--ocean-deep);
+  --bg-note:         var(--ocean-mid);
+  --bg-float-solid:  var(--ocean-shelf);
+  --bg-float:        rgba(36, 61, 82, 0.95);
+  --bg-code:         #060F1A;
+  --bg-highlight:    rgba(135, 173, 198, 0.09);
+  --bg-selection:    rgba(135, 173, 198, 0.20);
+
+  /* TEXTO */
+  --text-primary:    var(--ice-bright);
+  --text-secondary:  var(--ice-mid);
+  --text-muted:      var(--lightsteele);
+  --text-faint:      var(--steel);
+
+  /* ACENTOS */
+  --accent-1:        var(--fjord-blue);
+  --accent-2:        var(--ice-bright);
+  --accent-3:        var(--ice-mid);
+  --accent-4:        var(--fjord-mid);
+  --accent-primary:  var(--fjord-blue);
+  --accent-secondary:var(--ice-bright);
+
+  /* BORDES */
+  --border-subtle:   rgba(115, 132, 150, 0.18);
+  --border-medium:   rgba(115, 132, 150, 0.32);
+  --border-accent:   rgba(135, 173, 198, 0.36);
+  --border-ice:      rgba(203, 228, 237, 0.22);
+
+  --header-line:     var(--fjord-blue);
+  --link-color:      var(--ice-mid);
+  --link-hover:      var(--ice-bright);
+
+  /* SOMBRAS */
+  --shadow-sm:   0 2px 10px rgba(8, 18, 32, 0.65);
+  --shadow-md:   0 4px 28px rgba(8, 18, 32, 0.82), 0 1px 6px rgba(8, 18, 32, 0.55);
+  --shadow-lg:   0 8px 52px rgba(8, 18, 32, 0.95), 0 3px 14px rgba(8, 18, 32, 0.70);
+  --shadow-float:var(--shadow-md);
+  --shadow-deep: var(--shadow-lg);
+  --shadow-glow: 0 0 48px rgba(110, 141, 170, 0.10), 0 0 96px rgba(110, 141, 170, 0.05);
+
+  /* HEADERS */
+  --h1-color:  var(--ice-shine);
+  --h2-color:  var(--ice-bright);
+  --h3-color:  var(--fjord-glow);
+  --h4-color:  var(--ice-mid);
+  --h5-color:  var(--fjord-drift);
+  --h6-color:  var(--lightsteele);
+
+  /* CALLOUTS */
+  --co-note-bg:     rgba(110, 141, 170, 0.09);
+  --co-note-bd:     var(--fjord-blue);
+  --co-warn-bg:     rgba(172, 138, 80, 0.09);
+  --co-warn-bd:     #AC8A50;
+  --co-tip-bg:      rgba(135, 173, 198, 0.09);
+  --co-tip-bd:      var(--ice-mid);
+  --co-info-bg:     rgba(66, 90, 115, 0.20);
+  --co-info-bd:     var(--ocean-shelf);
+  --co-danger-bg:   rgba(160, 64, 64, 0.09);
+  --co-danger-bd:   #A04040;
+  --co-abstract-bg: rgba(14, 26, 43, 0.38);
+  --co-abstract-bd: var(--steel);
+  --co-example-bg:  rgba(36, 61, 82, 0.30);
+  --co-example-bd:  var(--fjord-mid);
+
+  /* ENTORNOS MATEMÁTICOS */
+  --math-formula-bg: rgba(6, 12, 22, 0.88);
+  --math-formula-bd: rgba(191, 201, 217, 0.22);
+
+  --math-teo-bg:    rgba(8, 18, 32, 0.97);
+  --math-teo-bd:    var(--ice-bright);
+  --math-teo-head:  rgba(203, 228, 237, 0.07);
+  --math-teo-text:  var(--ice-bright);
+
+  --math-demo-bg:   rgba(6, 14, 24, 0.93);
+  --math-demo-bd:   var(--fjord-blue);
+  --math-demo-text: var(--ice-mid);
+
+  --math-teoria-bg: rgba(36, 61, 82, 0.40);
+  --math-teoria-st: var(--fjord-blue);
+  --math-teoria-tx: var(--ice-bright);
+
+  --math-def-bg:    rgba(14, 26, 43, 0.88);
+  --math-def-bd:    var(--ice-shadow);
+
+  /* SIDEBAR */
+  --sidebar-bg:        var(--ocean-deep);
+  --sidebar-hover:     rgba(110, 141, 170, 0.12);
+  --sidebar-active:    rgba(135, 173, 198, 0.18);
+  --sidebar-active-ln: var(--fjord-blue);
+
+  /* SCROLL */
+  --scroll-bg:    var(--ocean-abyss);
+  --scroll-thumb: rgba(115, 132, 150, 0.28);
+  --scroll-hover: rgba(115, 132, 150, 0.50);
+
+  /* VARIABLES NATIVAS OBSIDIAN */
+  --background-primary:               var(--ocean-mid);
+  --background-primary-alt:           var(--ocean-deep);
+  --background-secondary:             var(--ocean-deep);
+  --background-secondary-alt:         var(--ocean-abyss);
+  --background-modifier-hover:        rgba(110, 141, 170, 0.12);
+  --background-modifier-active-hover: rgba(135, 173, 198, 0.18);
+  --background-modifier-border:       rgba(115, 132, 150, 0.20);
+  --text-normal:       var(--ice-bright);
+  --text-muted:        var(--lightsteele);
+  --text-faint:        var(--steel);
+  --text-accent:       var(--fjord-blue);
+  --text-accent-hover: var(--ice-mid);
+  --interactive-accent:       var(--fjord-blue);
+  --interactive-accent-hover: var(--ice-mid);
+  --text-highlight-bg: rgba(135, 173, 198, 0.20);
+  --link-color:        var(--ice-mid);
+  --link-color-hover:  var(--ice-bright);
+  --link-unresolved-color: var(--steel);
+  --code-background:   #060F1A;
+  --code-normal:       var(--fjord-drift);
+  --h1-color: var(--ice-shine);
+  --h2-color: var(--ice-bright);
+  --h3-color: var(--fjord-glow);
+  --h4-color: var(--ice-mid);
+  --h5-color: var(--fjord-drift);
+  --h6-color: var(--lightsteele);
+  --blockquote-border-color: var(--fjord-blue);
+  --table-header-background: var(--ocean-shelf);
+  --table-border-color:      rgba(115, 132, 150, 0.20);
+  --scrollbar-thumb-bg:      rgba(115, 132, 150, 0.28);
+  --tag-color:       var(--fjord-blue);
+  --tag-background:  rgba(110, 141, 170, 0.11);
+  --checkbox-color:  var(--fjord-blue);
+}
+
+
+
+/* §2 ══════════════════════════════════════════════════════════════
+   FOREST · Variables · Modo claro
+   ══════════════════════════════════════════════════════════════ */
+.theme-light {
+
+  /* Papel y tierra */
+  --fo-aged:       #E8EEE0;
+  --fo-parchment:  #EDF3E6;
+  --fo-cream:      #F3F8EE;
+  --fo-linen:      #E2EBD8;
+  --fo-soil:       #D8E4CC;
+
+  /* Madera y corteza */
+  --fo-oak:        #2E1A08;
+  --fo-heartwood:  #4A2810;
+  --fo-bark:       #6A3E18;
+  --fo-wood:       #8A5428;
+  --fo-amber:      #B07828;
+  --fo-sand:       #C8A060;
+
+  /* Verde bosque */
+  --fo-canopy:     #1E3018;
+  --fo-forest:     #2E4824;
+  --fo-understory: #3E5E30;
+  --fo-fern:       #507040;
+  --fo-moss:       #6A8858;
+  --fo-leaf:       #84A068;
+  --fo-sage:       #9CB880;
+  --fo-lichen:     #B4C898;
+
+  /* Piedra */
+  --fo-stone:      #9A9070;
+  --fo-ash:        #B8AC8C;
+
+  /* TOKENS SEMÁNTICOS */
+  --bg-primary:      var(--fo-soil);
+  --bg-secondary:    #BDD0AC;   /* FIX: alineado con sidebar-bg */
+  --bg-note:         var(--fo-cream);
+  --bg-float-solid:  var(--fo-parchment);
+  --bg-float:        rgba(250, 244, 224, 0.96);
+  --bg-code:         #DDE8D0;
+  --bg-highlight:    rgba(80, 112, 64, 0.11);
+  --bg-selection:    rgba(80, 112, 64, 0.22);
+
+  /* Texto */
+  --text-primary:    var(--fo-oak);
+  --text-secondary:  var(--fo-heartwood);
+  --text-muted:      var(--fo-bark);
+  --text-faint:      var(--fo-stone);
+
+  /* Acentos */
+  --accent-1:        var(--fo-fern);
+  --accent-2:        var(--fo-bark);
+  --accent-3:        var(--fo-moss);
+  --accent-4:        var(--fo-forest);
+  --accent-primary:  var(--fo-fern);
+  --accent-secondary:var(--fo-bark);
+
+  /* Bordes */
+  --border-subtle:   #C4B898;
+  --border-medium:   #A89878;
+  --border-accent:   rgba(80, 112, 64, 0.34);
+  --border-wood:     rgba(46, 26, 8, 0.22);
+
+  --header-line:     var(--fo-moss);
+  --link-color:      var(--fo-fern);
+  --link-hover:      var(--fo-bark);
+
+  /* Sombras */
+  --shadow-sm:   0 2px 8px  rgba(30, 20, 8, 0.11);
+  --shadow-md:   0 4px 22px rgba(30, 20, 8, 0.16),
+                 0 1px 5px  rgba(30, 20, 8, 0.09);
+  --shadow-lg:   0 8px 44px rgba(30, 20, 8, 0.22),
+                 0 3px 10px rgba(30, 20, 8, 0.13);
+  --shadow-float:var(--shadow-md);
+  --shadow-deep: var(--shadow-lg);
+  --shadow-glow: 0 0 28px rgba(80, 112, 64, 0.09);
+
+  /* Headers */
+  --h1-color:  var(--fo-oak);
+  --h2-color:  var(--fo-heartwood);
+  --h3-color:  var(--fo-forest);
+  --h4-color:  var(--fo-fern);
+  --h5-color:  var(--fo-moss);
+  --h6-color:  var(--fo-amber);
+
+  /* Callouts */
+  --co-note-bg:     rgba(80, 112, 64, 0.08);
+  --co-note-bd:     var(--fo-fern);
+  --co-warn-bg:     rgba(176, 120, 40, 0.09);
+  --co-warn-bd:     var(--fo-amber);
+  --co-tip-bg:      rgba(106, 136, 88, 0.09);
+  --co-tip-bd:      var(--fo-moss);
+  --co-info-bg:     rgba(72, 100, 136, 0.08);
+  --co-info-bd:     #486488;
+  --co-danger-bg:   rgba(144, 48, 48, 0.08);
+  --co-danger-bd:   #903030;
+  --co-abstract-bg: rgba(106, 62, 24, 0.09);
+  --co-abstract-bd: var(--fo-bark);
+  --co-example-bg:  rgba(46, 72, 36, 0.09);
+  --co-example-bd:  var(--fo-forest);
+
+  /* Entornos matemáticos */
+  --math-formula-bg: rgba(196, 180, 144, 0.20);
+  --math-formula-bd: rgba(106, 62, 24, 0.26);
+
+  --math-teo-bg:    #EAF0E2;
+  --math-teo-bd:    var(--fo-fern);
+  --math-teo-head:  rgba(80, 112, 64, 0.09);
+  --math-teo-text:  var(--fo-oak);
+
+  --math-demo-bg:   #F0F5EB;
+  --math-demo-bd:   var(--fo-bark);
+  --math-demo-text: var(--fo-heartwood);
+
+  --math-teoria-bg: rgba(200, 216, 184, 0.50);
+  --math-teoria-st: var(--fo-moss);
+  --math-teoria-tx: var(--fo-heartwood);
+
+  --math-def-bg:    rgba(72, 100, 136, 0.07);
+  --math-def-bd:    #486488;
+
+  /* Sidebar */
+  --sidebar-bg:        #BDD0AC;
+  --sidebar-hover:     rgba(80, 112, 64, 0.14);
+  --sidebar-active:    rgba(80, 112, 64, 0.24);
+  --sidebar-active-ln: var(--fo-fern);
+
+  /* Scrollbar */
+  --scroll-bg:    #BCC8A8;
+  --scroll-thumb: #9A9070;
+  --scroll-hover: #7A7050;
+
+  /* ── Variables nativas Obsidian ── */
+  --background-primary:               var(--fo-cream);
+  /* FIX: primary-alt y secondary alineados con sidebar-bg para evitar banding */
+  --background-primary-alt:           #BDD0AC;
+  --background-secondary:             #BDD0AC;
+  --background-secondary-alt:         var(--fo-soil);
+  --background-modifier-hover:        rgba(80, 112, 64, 0.12);
+  --background-modifier-active-hover: rgba(80, 112, 64, 0.22);
+  --background-modifier-border:       #C4B898;
+  --text-normal:       var(--fo-oak);
+  --text-muted:        var(--fo-bark);
+  --text-faint:        var(--fo-stone);
+  --text-accent:       var(--fo-fern);
+  --text-accent-hover: var(--fo-bark);
+  --interactive-accent:       var(--fo-fern);
+  --interactive-accent-hover: var(--fo-bark);
+  --text-highlight-bg: rgba(80, 112, 64, 0.20);
+  --link-color:        var(--fo-fern);
+  --link-color-hover:  var(--fo-bark);
+  --link-unresolved-color: var(--fo-stone);
+  --code-background:   #DDE8D0;
+  --code-normal:       var(--fo-forest);
+  --h1-color: var(--fo-oak);
+  --h2-color: var(--fo-heartwood);
+  --h3-color: var(--fo-forest);
+  --h4-color: var(--fo-fern);
+  --h5-color: var(--fo-moss);
+  --h6-color: var(--fo-amber);
+  --blockquote-border-color: var(--fo-moss);
+  --table-header-background: var(--fo-parchment);
+  --table-border-color:      #C4B898;
+  --scrollbar-thumb-bg:      #9A9070;
+  --tag-color:       var(--fo-fern);
+  --tag-background:  rgba(80, 112, 64, 0.10);
+  --checkbox-color:  var(--fo-fern);
+}
+
+
+
+/* §3 ══════════════════════════════════════════════════════════════
+   LAYOUT · Estructura, sidebar, nota flotante, tabs, scrollbar
+   ══════════════════════════════════════════════════════════════ */
+
+body, .app-container, .workspace {
+  background-color: var(--bg-primary) !important;
+}
+
+/* ── Ribbon ─────────────────────────────────────────────────── */
+.side-dock-ribbon {
+  background-color: var(--bg-secondary) !important;
+  border-right: 1px solid var(--border-subtle) !important;
+}
+.side-dock-ribbon-action { color: var(--text-muted) !important; transition: color 0.2s !important; }
+.side-dock-ribbon-action:hover { color: var(--accent-1) !important; }
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+.workspace-split.mod-left-split {
+  background-color: var(--sidebar-bg) !important;
+  border-right: 1px solid var(--border-subtle) !important;
+  box-shadow: 3px 0 20px rgba(0,0,0,0.20) !important;
+}
+.workspace-split.mod-right-split {
+  background-color: var(--sidebar-bg) !important;
+  border-left: 1px solid var(--border-subtle) !important;
+}
+
+/* FIX: nav-header sin estilo propio caía al color de Obsidian default
+   — ahora hereda el fondo del sidebar explícitamente */
+.workspace-split.mod-left-split .nav-header,
+.workspace-split.mod-right-split .nav-header {
+  background-color: var(--sidebar-bg) !important;
+}
+
+.nav-files-container { padding: 6px 4px !important; }
+
+/* ── Sidebar navigation ─────────────────────────────────────────── */
+.nav-files-container { 
+  padding: 6px 4px !important; 
+}
+
+.nav-file-title,
+.nav-folder-title {
+  /* NO usar padding shorthand - respetar indentación de Obsidian */
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  padding-right: 10px !important;
+  /* padding-left lo controla Obsidian automáticamente */
+  
+  border-radius: 6px !important;
+  color: var(--text-muted) !important;
+  font-size: 0.87em !important;
+  transition: background 0.18s, color 0.18s, transform 0.15s !important;
+}
+
+.nav-file-title:hover, 
+.nav-folder-title:hover {
+  background-color: var(--sidebar-hover) !important;
+  color: var(--text-primary) !important;
+  transform: translateX(4px) !important; /* Efecto visual sin romper layout */
+}
+
+.nav-file-title.is-active {
+  background-color: var(--sidebar-active) !important;
+  color: var(--text-primary) !important;
+  border-left: 2px solid var(--sidebar-active-ln) !important;
+  font-weight: 500 !important;
+  /* No forzar padding-left aquí tampoco */
+}
+
+.nav-folder-children {
+  border-left: 1px dashed var(--border-subtle) !important;
+  /* NO usar margin-left - Obsidian maneja la indentación automática */
+}
+
+.nav-folder-title-content { 
+  font-weight: 600 !important; 
+}
+
+/* ── Nota flotante ───────────────────────────────────────────── */
+.workspace-leaf-content[data-type="markdown"] {
+  background-color: var(--bg-note) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-deep), var(--shadow-glow) !important;
+  margin: 10px !important;
+  border: 1px solid var(--border-subtle) !important;
+  overflow: hidden !important;
+}
+/* FIX: gaps entre notas usaban --bg-primary (ocean-abyss #081F2F, muy oscuro)
+   Cambiado a --bg-secondary (ocean-deep #0E1A2B) — menos duro, más armónico */
+.workspace-leaf { background-color: var(--bg-secondary) !important; }
+.cm-editor, .cm-scroller, .markdown-reading-view { background-color: var(--bg-note) !important; }
+
+.markdown-preview-view .markdown-preview-sizer {
+  max-width: 1025px !important;
+  margin: 0 auto !important;
+  padding: 48px 56px !important;
+}
+.cm-content {
+  max-width: 1020px !important;
+  margin: 0 auto !important;
+  padding: 48px 56px !important;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────── */
+.workspace-tab-header-container {
+  background-color: var(--bg-secondary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+.workspace-tab-header {
+  background-color: transparent !important;
+  color: var(--text-muted) !important;
+  border-bottom: 2px solid transparent !important;
+  transition: color 0.2s, border-color 0.2s !important;
+}
+.workspace-tab-header:hover { color: var(--text-secondary) !important; }
+.workspace-tab-header.is-active {
+  color: var(--text-primary) !important;
+  border-bottom-color: var(--accent-1) !important;
+}
+
+/* ── Modal ─────────────────────────────────────────────────────── */
+.modal-container { background-color: rgba(0,0,0,0.52) !important; backdrop-filter: blur(6px) !important; }
+.modal, .prompt {
+  background-color: var(--bg-float-solid) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-deep) !important;
+}
+.prompt-input { background-color: transparent !important; color: var(--text-primary) !important; border-bottom: 1px solid var(--border-medium) !important; }
+.suggestion-item.is-selected { background-color: var(--sidebar-active) !important; border-radius: 7px !important; }
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px !important; height: 5px !important; }
+::-webkit-scrollbar-track { background: var(--scroll-bg) !important; }
+::-webkit-scrollbar-thumb { background: var(--scroll-thumb) !important; border-radius: 3px !important; }
+::-webkit-scrollbar-thumb:hover { background: var(--scroll-hover) !important; }
+
+/* ── Misc ─────────────────────────────────────────────────────── */
+::selection { background-color: var(--bg-selection) !important; }
+.cm-active.cm-line { background-color: var(--bg-highlight) !important; border-radius: 4px !important; }
+
+
+/* §3b ═════════════════════════════════════════════════════════════
+   AMBIENT — Burbujas (dark) · Arbustos (light)
+   ══════════════════════════════════════════════════════════════ */
+
+.markdown-preview-view { position: relative !important; }
+
+.theme-dark .markdown-preview-view .markdown-preview-sizer {
+  background-color: var(--bg-note) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-deep), var(--shadow-glow) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding-left: 56px !important;
+  padding-right: 56px !important;
+}
+.theme-light .markdown-preview-view .markdown-preview-sizer {
+  background-color: var(--bg-note) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-deep) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding-left: 56px !important;
+  padding-right: 56px !important;
+}
+
+/* DARK — Burbujas de hielo y agua */
+.theme-dark .markdown-preview-view {
+  background:
+  radial-gradient(circle at 12% 22%, rgba(0,40,90,0.45) 22px, transparent 24px),
+  radial-gradient(circle at 12% 20%, rgba(120,180,255,0.35) 20px, transparent 22px),
+  radial-gradient(circle at 10% 18%, rgba(200,240,255,0.8) 6px, transparent 8px),
+  radial-gradient(circle at 88% 30%, rgba(0,40,90,0.40) 16px, transparent 18px),
+  radial-gradient(circle at 88% 28%, rgba(120,180,255,0.30) 14px, transparent 16px),
+  radial-gradient(circle at 86% 26%, rgba(210,245,255,0.75) 4px, transparent 6px),
+  radial-gradient(circle at 10% 82%, rgba(0,40,90,0.35) 18px, transparent 20px),
+  radial-gradient(circle at 10% 80%, rgba(120,180,255,0.28) 16px, transparent 18px),
+  radial-gradient(circle at 8% 78%, rgba(210,245,255,0.7) 5px, transparent 7px),
+  radial-gradient(circle at 22% 65%, #d8f2ff 8px, transparent 10px),
+  radial-gradient(circle at 78% 72%, #e5f6ff 7px, transparent 9px),
+  radial-gradient(ellipse at top, rgba(230,245,255,0.25), transparent 60%),
+  linear-gradient(to bottom, #243b53, #1d3147 40%, #152433);
+}
+
+/* LIGHT — Arbustos y matorrales */
+.theme-light .markdown-preview-view {
+  background:
+  linear-gradient(#6e8f5f,#6e8f5f) 28% 88% / 6px 40px no-repeat,
+  linear-gradient(#6e8f5f,#6e8f5f) 68% 90% / 6px 35px no-repeat,
+  linear-gradient(#6e8f5f,#6e8f5f) 82% 92% / 5px 30px no-repeat,
+  conic-gradient(from 180deg at 28% 88%, transparent 0 45deg, #4f7c45 45deg 135deg, transparent 135deg),
+  conic-gradient(from 180deg at 68% 90%, transparent 0 45deg, #5b8f50 45deg 135deg, transparent 135deg),
+  conic-gradient(from 180deg at 82% 92%, transparent 0 45deg, #4f7c45 45deg 135deg, transparent 135deg),
+  linear-gradient(to bottom, #e9f2e4, #dbe7d3);
+}
+
+
+/* §4 ══════════════════════════════════════════════════════════════
+   TYPOGRAPHY · Headers, texto, enlaces, código, tablas, listas
+   ══════════════════════════════════════════════════════════════ */
+
+.markdown-preview-view h1 {
+  color: var(--h1-color) !important; font-size: 2.05em !important; font-weight: 800 !important;
+  letter-spacing: -0.028em !important; margin: 1.8em 0 0.6em !important;
+  padding-bottom: 0.40em !important; border-bottom: 3px solid var(--header-line) !important; line-height: 1.12 !important;
+}
+.markdown-preview-view h2 {
+  color: var(--h2-color) !important; font-size: 1.45em !important; font-weight: 700 !important;
+  margin: 1.6em 0 0.45em !important; padding-bottom: 0.28em !important;
+  border-bottom: 1px solid var(--border-accent) !important;
+}
+.markdown-preview-view h3 {
+  color: var(--h3-color) !important; font-size: 1.18em !important; font-weight: 600 !important;
+  margin: 1.4em 0 0.38em !important; padding-left: 13px !important; border-left: 4px solid var(--header-line) !important;
+}
+.markdown-preview-view h4 {
+  color: var(--h4-color) !important; font-size: 0.90em !important; font-weight: 700 !important;
+  text-transform: uppercase !important; letter-spacing: 0.10em !important; margin: 1.2em 0 0.3em !important;
+}
+.markdown-preview-view h5 {
+  color: var(--h5-color) !important; font-size: 0.86em !important; font-weight: 600 !important;
+  text-transform: uppercase !important; letter-spacing: 0.12em !important; opacity: 0.85 !important;
+}
+.markdown-preview-view h6 {
+  color: var(--h6-color) !important; font-size: 0.84em !important; font-style: italic !important; opacity: 0.80 !important;
+}
+
+.markdown-preview-view p { color: var(--text-primary) !important; line-height: 1.88 !important; }
+.markdown-preview-view strong { color: var(--text-primary) !important; font-weight: 700 !important; }
+.markdown-preview-view em { color: var(--accent-secondary) !important; font-style: italic !important; }
+
+.markdown-preview-view a,
+.markdown-preview-view a.internal-link {
+  color: var(--link-color) !important; text-decoration: none !important;
+  border-bottom: 1px solid transparent !important; transition: color 0.2s, border-color 0.2s !important;
+}
+.markdown-preview-view a:hover { color: var(--link-hover) !important; border-bottom-color: var(--link-hover) !important; }
+
+.markdown-preview-view code, .cm-inline-code {
+  background-color: var(--bg-code) !important; color: var(--accent-3) !important;
+  border: 1px solid var(--border-subtle) !important; border-radius: 5px !important;
+  padding: 2px 7px !important; font-size: 0.86em !important;
+  font-family: "JetBrains Mono","Fira Code","Cascadia Code",monospace !important;
+}
+.markdown-preview-view pre {
+  background-color: var(--bg-code) !important; border: 1px solid var(--border-subtle) !important;
+  border-radius: 10px !important; padding: 22px 26px !important; box-shadow: var(--shadow-float) !important;
+}
+.markdown-preview-view pre code { background: transparent !important; border: none !important; padding: 0 !important; color: var(--text-secondary) !important; }
+
+.markdown-preview-view ul li, .markdown-preview-view ol li { color: var(--text-primary) !important; margin: 5px 0 !important; line-height: 1.80 !important; }
+.markdown-preview-view ul li::marker { color: var(--accent-1) !important; }
+.markdown-preview-view ol li::marker { color: var(--accent-2) !important; font-weight: 700 !important; }
+
+.markdown-preview-view blockquote {
+  border-left: 4px solid var(--accent-1) !important; background-color: var(--bg-highlight) !important;
+  border-radius: 0 8px 8px 0 !important; padding: 14px 22px !important;
+  margin: 18px 0 !important; color: var(--text-secondary) !important; font-style: italic !important;
+}
+.markdown-preview-view hr { border: none !important; border-top: 1px solid var(--border-accent) !important; margin: 38px 0 !important; opacity: 0.6 !important; }
+
+.markdown-preview-view table {
+  border-collapse: collapse !important; width: 100% !important; margin: 24px 0 !important;
+  border-radius: 10px !important; overflow: hidden !important;
+  border: 1px solid var(--border-subtle) !important; box-shadow: var(--shadow-float) !important;
+}
+.markdown-preview-view th {
+  background-color: var(--bg-float-solid) !important; color: var(--text-primary) !important;
+  font-weight: 700 !important; font-size: 0.84em !important; letter-spacing: 0.07em !important;
+  text-transform: uppercase !important; padding: 12px 18px !important; border-bottom: 2px solid var(--border-accent) !important;
+}
+.markdown-preview-view td { padding: 10px 18px !important; border-bottom: 1px solid var(--border-subtle) !important; color: var(--text-secondary) !important; }
+.markdown-preview-view tr:last-child td { border-bottom: none !important; }
+.markdown-preview-view tr:hover td { background-color: var(--bg-highlight) !important; }
+
+.tag {
+  background-color: var(--bg-highlight) !important; color: var(--accent-1) !important;
+  border: 1px solid var(--border-accent) !important; border-radius: 12px !important;
+  padding: 2px 10px !important; font-size: 0.82em !important; text-decoration: none !important;
+}
+.tag:hover { background-color: var(--sidebar-active) !important; }
+
+
+
+/* §5 ══════════════════════════════════════════════════════════════
+   CALLOUTS · SVG inline dibujados a mano · trazo fino tipo pluma
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Kill icono SVG nativo de Obsidian ─────────────────────── */
+.callout-icon,
+.callout-icon svg,
+.callout .callout-title .callout-icon {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── BASE ────────────────────────────────────────────────────── */
+.callout {
+  border-radius: 10px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-left-width: 4px !important;
+  padding: 0 !important;
+  margin: 22px 0 !important;
+  box-shadow: var(--shadow-float) !important;
+  overflow: hidden !important;
+  transition: box-shadow 0.2s !important;
+}
+.callout:hover { box-shadow: var(--shadow-deep) !important; }
+
+.callout-title {
+  padding: 10px 16px !important;
+  font-weight: 700 !important;
+  font-size: 0.80em !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.11em !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+}
+
+.callout-title::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+}
+
+.callout-content {
+  padding: 12px 16px 15px !important;
+  line-height: 1.82 !important;
+  font-size: 0.97em !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NOTE
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="note"] {
+  background-color: var(--co-note-bg) !important;
+  border-color: color-mix(in srgb, var(--co-note-bd) 28%, transparent) !important;
+  border-left-color: var(--co-note-bd) !important;
+}
+.callout[data-callout="note"] .callout-title {
+  color: var(--co-note-bd) !important;
+  background-color: color-mix(in srgb, var(--co-note-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="note"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M3 15 L13 3 L16 6 L6 16 Z' stroke='%236E8DAA' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M11 5 L14 8' stroke='%236E8DAA' stroke-width='1.2'/%3E%3Cpath d='M3 15 L2 17 L5 16 Z' fill='%236E8DAA'/%3E%3Cpath d='M3 13 L6 10' stroke='%236E8DAA' stroke-width='0.8' stroke-dasharray='1.5 1.5'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="note"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M3 15 L13 3 L16 6 L6 16 Z' stroke='%23507040' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M11 5 L14 8' stroke='%23507040' stroke-width='1.2'/%3E%3Cpath d='M3 15 L2 17 L5 16 Z' fill='%23507040'/%3E%3Cpath d='M3 13 L6 10' stroke='%23507040' stroke-width='0.8' stroke-dasharray='1.5 1.5'/%3E%3C/svg%3E") !important;
+}
+.callout[data-callout="note"] .callout-content { color: var(--text-secondary) !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   WARNING
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="warning"],
+.callout[data-callout="caution"] {
+  background-color: var(--co-warn-bg) !important;
+  border-color: color-mix(in srgb, var(--co-warn-bd) 28%, transparent) !important;
+  border-left-color: var(--co-warn-bd) !important;
+}
+.callout[data-callout="warning"] .callout-title,
+.callout[data-callout="caution"] .callout-title {
+  color: var(--co-warn-bd) !important;
+  background-color: color-mix(in srgb, var(--co-warn-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="warning"] .callout-title::before,
+.theme-dark .callout[data-callout="caution"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 2 L17 16 L1 16 Z' stroke='%23A07E30' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cline x1='9' y1='8' x2='9' y2='12' stroke='%23A07E30' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='14' r='0.8' fill='%23A07E30'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="warning"] .callout-title::before,
+.theme-light .callout[data-callout="caution"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 2 L17 16 L1 16 Z' stroke='%23B07828' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cline x1='9' y1='8' x2='9' y2='12' stroke='%23B07828' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='14' r='0.8' fill='%23B07828'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TIP
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="tip"],
+.callout[data-callout="hint"] {
+  background-color: var(--co-tip-bg) !important;
+  border-color: color-mix(in srgb, var(--co-tip-bd) 28%, transparent) !important;
+  border-left-color: var(--co-tip-bd) !important;
+}
+.callout[data-callout="tip"] .callout-title,
+.callout[data-callout="hint"] .callout-title {
+  color: var(--co-tip-bd) !important;
+  background-color: color-mix(in srgb, var(--co-tip-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="tip"] .callout-title::before,
+.theme-dark .callout[data-callout="hint"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 16 Q9 10 9 8' stroke='%2387ADC6' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M9 10 Q6 8 4 9 Q5 6 8 7 Q9 7 9 8' fill='%2387ADC6' opacity='0.7'/%3E%3Cpath d='M9 8 Q12 6 14 7 Q13 4 10 5 Q9 6 9 8' fill='%2387ADC6'/%3E%3Ccircle cx='9' cy='17' r='1' fill='%2387ADC6' opacity='0.5'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="tip"] .callout-title::before,
+.theme-light .callout[data-callout="hint"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 16 Q9 10 9 8' stroke='%236A8858' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M9 10 Q6 8 4 9 Q5 6 8 7 Q9 7 9 8' fill='%236A8858' opacity='0.7'/%3E%3Cpath d='M9 8 Q12 6 14 7 Q13 4 10 5 Q9 6 9 8' fill='%236A8858'/%3E%3Ccircle cx='9' cy='17' r='1' fill='%236A8858' opacity='0.5'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INFO
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="info"] {
+  background-color: var(--co-info-bg) !important;
+  border-color: color-mix(in srgb, var(--co-info-bd) 28%, transparent) !important;
+  border-left-color: var(--co-info-bd) !important;
+}
+.callout[data-callout="info"] .callout-title {
+  color: var(--co-info-bd) !important;
+  background-color: color-mix(in srgb, var(--co-info-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="info"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 2 Q14 7 14 11 A5 5 0 0 1 4 11 Q4 7 9 2 Z' stroke='%236E8DAA' stroke-width='1.3' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='8' r='0.8' fill='%236E8DAA'/%3E%3Cline x1='9' y1='10' x2='9' y2='13' stroke='%236E8DAA' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="info"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 2 Q14 7 14 11 A5 5 0 0 1 4 11 Q4 7 9 2 Z' stroke='%23486488' stroke-width='1.3' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='8' r='0.8' fill='%23486488'/%3E%3Cline x1='9' y1='10' x2='9' y2='13' stroke='%23486488' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DANGER
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="danger"],
+.callout[data-callout="error"] {
+  background-color: var(--co-danger-bg) !important;
+  border-color: color-mix(in srgb, var(--co-danger-bd) 28%, transparent) !important;
+  border-left-color: var(--co-danger-bd) !important;
+}
+.callout[data-callout="danger"] .callout-title,
+.callout[data-callout="error"] .callout-title {
+  color: var(--co-danger-bd) !important;
+  background-color: color-mix(in srgb, var(--co-danger-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="danger"] .callout-title::before,
+.theme-dark .callout[data-callout="error"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='7' stroke='%23A03A3A' stroke-width='1.2'/%3E%3Cline x1='9' y1='5' x2='9' y2='10' stroke='%23A03A3A' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='12.5' r='0.9' fill='%23A03A3A'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="danger"] .callout-title::before,
+.theme-light .callout[data-callout="error"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='7' stroke='%23903030' stroke-width='1.2'/%3E%3Cline x1='9' y1='5' x2='9' y2='10' stroke='%23903030' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='12.5' r='0.9' fill='%23903030'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ABSTRACT / SUMMARY
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="abstract"],
+.callout[data-callout="summary"],
+.callout[data-callout="tldr"] {
+  background-color: var(--co-abstract-bg) !important;
+  border-color: color-mix(in srgb, var(--co-abstract-bd) 28%, transparent) !important;
+  border-left-color: var(--co-abstract-bd) !important;
+}
+.callout[data-callout="abstract"] .callout-title,
+.callout[data-callout="summary"] .callout-title,
+.callout[data-callout="tldr"] .callout-title {
+  color: var(--co-abstract-bd) !important;
+  background-color: color-mix(in srgb, var(--co-abstract-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="abstract"] .callout-title::before,
+.theme-dark .callout[data-callout="summary"] .callout-title::before,
+.theme-dark .callout[data-callout="tldr"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Crect x='3' y='4' width='12' height='11' rx='1' stroke='%23425A73' stroke-width='1.2'/%3E%3Cpath d='M3 5 Q3 2 6 3 L6 5' stroke='%23425A73' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M15 5 Q15 2 12 3 L12 5' stroke='%23425A73' stroke-width='1.1' stroke-linecap='round'/%3E%3Cline x1='6' y1='8' x2='12' y2='8' stroke='%23425A73' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='6' y1='10.5' x2='12' y2='10.5' stroke='%23425A73' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='6' y1='13' x2='10' y2='13' stroke='%23425A73' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="abstract"] .callout-title::before,
+.theme-light .callout[data-callout="summary"] .callout-title::before,
+.theme-light .callout[data-callout="tldr"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Crect x='3' y='4' width='12' height='11' rx='1' stroke='%236A3E18' stroke-width='1.2'/%3E%3Cpath d='M3 5 Q3 2 6 3 L6 5' stroke='%236A3E18' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M15 5 Q15 2 12 3 L12 5' stroke='%236A3E18' stroke-width='1.1' stroke-linecap='round'/%3E%3Cline x1='6' y1='8' x2='12' y2='8' stroke='%236A3E18' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='6' y1='10.5' x2='12' y2='10.5' stroke='%236A3E18' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='6' y1='13' x2='10' y2='13' stroke='%236A3E18' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SUCCESS / CHECK
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="success"],
+.callout[data-callout="check"],
+.callout[data-callout="done"] {
+  background-color: var(--co-tip-bg) !important;
+  border-color: color-mix(in srgb, var(--co-tip-bd) 28%, transparent) !important;
+  border-left-color: var(--co-tip-bd) !important;
+}
+.callout[data-callout="success"] .callout-title,
+.callout[data-callout="check"] .callout-title,
+.callout[data-callout="done"] .callout-title {
+  color: var(--co-tip-bd) !important;
+  background-color: color-mix(in srgb, var(--co-tip-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="success"] .callout-title::before,
+.theme-dark .callout[data-callout="check"] .callout-title::before,
+.theme-dark .callout[data-callout="done"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='7' stroke='%2387ADC6' stroke-width='1.2'/%3E%3Cpath d='M5.5 9 L8 11.5 L12.5 6.5' stroke='%2387ADC6' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="success"] .callout-title::before,
+.theme-light .callout[data-callout="check"] .callout-title::before,
+.theme-light .callout[data-callout="done"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='7' stroke='%236A8858' stroke-width='1.2'/%3E%3Cpath d='M5.5 9 L8 11.5 L12.5 6.5' stroke='%236A8858' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EXAMPLE
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="example"] {
+  background-color: var(--co-example-bg) !important;
+  border-color: color-mix(in srgb, var(--co-example-bd) 28%, transparent) !important;
+  border-left-color: var(--co-example-bd) !important;
+}
+.callout[data-callout="example"] .callout-title {
+  color: var(--co-example-bd) !important;
+  background-color: color-mix(in srgb, var(--co-example-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="example"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='7.5' cy='7.5' r='5' stroke='%23425A73' stroke-width='1.3'/%3E%3Cline x1='11.5' y1='11.5' x2='16' y2='16' stroke='%23425A73' stroke-width='1.6' stroke-linecap='round'/%3E%3Cline x1='5.5' y1='7.5' x2='9.5' y2='7.5' stroke='%23425A73' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='7.5' y1='5.5' x2='7.5' y2='9.5' stroke='%23425A73' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="example"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='7.5' cy='7.5' r='5' stroke='%232E4824' stroke-width='1.3'/%3E%3Cline x1='11.5' y1='11.5' x2='16' y2='16' stroke='%232E4824' stroke-width='1.6' stroke-linecap='round'/%3E%3Cline x1='5.5' y1='7.5' x2='9.5' y2='7.5' stroke='%232E4824' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='7.5' y1='5.5' x2='7.5' y2='9.5' stroke='%232E4824' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   QUESTION
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="question"],
+.callout[data-callout="faq"],
+.callout[data-callout="help"] {
+  background-color: var(--co-info-bg) !important;
+  border-color: color-mix(in srgb, var(--co-info-bd) 28%, transparent) !important;
+  border-left-color: var(--co-info-bd) !important;
+}
+.callout[data-callout="question"] .callout-title,
+.callout[data-callout="faq"] .callout-title,
+.callout[data-callout="help"] .callout-title {
+  color: var(--co-info-bd) !important;
+  background-color: color-mix(in srgb, var(--co-info-bd) 10%, transparent) !important;
+}
+.theme-dark .callout[data-callout="question"] .callout-title::before,
+.theme-dark .callout[data-callout="faq"] .callout-title::before,
+.theme-dark .callout[data-callout="help"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='7' stroke='%236E8DAA' stroke-width='1.2'/%3E%3Cpath d='M6.5 7 Q6.5 4.5 9 5 Q11.5 5.5 11 7.5 Q10.5 9 9 9.5' stroke='%236E8DAA' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='9' cy='12.5' r='0.9' fill='%236E8DAA'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="question"] .callout-title::before,
+.theme-light .callout[data-callout="faq"] .callout-title::before,
+.theme-light .callout[data-callout="help"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='7' stroke='%23486488' stroke-width='1.2'/%3E%3Cpath d='M6.5 7 Q6.5 4.5 9 5 Q11.5 5.5 11 7.5 Q10.5 9 9 9.5' stroke='%23486488' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='9' cy='12.5' r='0.9' fill='%23486488'/%3E%3C/svg%3E") !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   QUOTE — Sin caja, solo barra lateral
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="quote"],
+.callout[data-callout="cite"] {
+  background-color: transparent !important;
+  border-left: 5px solid var(--border-medium) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+.callout[data-callout="quote"] .callout-title,
+.callout[data-callout="cite"] .callout-title { display: none !important; }
+.callout[data-callout="quote"] .callout-content,
+.callout[data-callout="cite"] .callout-content { font-style: italic !important; color: var(--text-muted) !important; padding: 8px 16px 12px !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   BUG
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="bug"] {
+  background-color: var(--co-danger-bg) !important;
+  border-color: color-mix(in srgb, var(--co-danger-bd) 26%, transparent) !important;
+  border-left-color: var(--co-danger-bd) !important;
+}
+.callout[data-callout="bug"] .callout-title {
+  color: var(--co-danger-bd) !important;
+  background-color: color-mix(in srgb, var(--co-danger-bd) 09%, transparent) !important;
+}
+.theme-dark .callout[data-callout="bug"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cellipse cx='9' cy='10' rx='3.5' ry='4.5' stroke='%23A03A3A' stroke-width='1.2'/%3E%3Cellipse cx='9' cy='6' rx='2.5' ry='2' stroke='%23A03A3A' stroke-width='1.1'/%3E%3Cline x1='5.5' y1='9' x2='2' y2='7' stroke='%23A03A3A' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='5.5' y1='11' x2='2' y2='11' stroke='%23A03A3A' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='12.5' y1='9' x2='16' y2='7' stroke='%23A03A3A' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='12.5' y1='11' x2='16' y2='11' stroke='%23A03A3A' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="bug"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cellipse cx='9' cy='10' rx='3.5' ry='4.5' stroke='%23903030' stroke-width='1.2'/%3E%3Cellipse cx='9' cy='6' rx='2.5' ry='2' stroke='%23903030' stroke-width='1.1'/%3E%3Cline x1='5.5' y1='9' x2='2' y2='7' stroke='%23903030' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='5.5' y1='11' x2='2' y2='11' stroke='%23903030' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='12.5' y1='9' x2='16' y2='7' stroke='%23903030' stroke-width='1' stroke-linecap='round'/%3E%3Cline x1='12.5' y1='11' x2='16' y2='11' stroke='%23903030' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+
+
+/* §6 ══════════════════════════════════════════════════════════════
+   MATH · Entornos matemáticos + fórmulas LaTeX/MathJax
+   ══════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   FÓRMULAS LaTeX
+   ══════════════════════════════════════════════════════════════ */
+.math.math-block {
+  display: block !important;
+  background-color: var(--math-formula-bg) !important;
+  border: 1px solid var(--math-formula-bd) !important;
+  border-radius: 10px !important;
+  padding: 20px 32px !important;
+  margin: 24px auto !important;
+  text-align: center !important;
+  box-shadow: var(--shadow-float) !important;
+  overflow-x: auto !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+}
+.math.math-block > mjx-container,
+.math.math-block mjx-container {
+  display: inline-block !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+.math.math-inline {
+  display: inline !important;
+  background-color: var(--math-formula-bg) !important;
+  border: 1px solid var(--math-formula-bd) !important;
+  border-radius: 4px !important;
+  padding: 1px 5px !important;
+  vertical-align: middle !important;
+}
+.math.math-inline > mjx-container,
+.math.math-inline mjx-container {
+  display: inline !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+.theme-dark .math mjx-container { color: #D0E8F0 !important; }
+.theme-light .math mjx-container { color: var(--text-primary) !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   TEOREMA
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="teorema"] {
+  background-color: var(--math-teo-bg) !important;
+  border-left: 5px solid var(--math-teo-bd) !important;
+  border-top: 1px solid color-mix(in srgb, var(--math-teo-bd) 28%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--math-teo-bd) 14%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-teo-bd) 14%, transparent) !important;
+  border-radius: 3px 12px 12px 3px !important;
+  margin: 30px 0 !important;
+  box-shadow: var(--shadow-deep) !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+.callout[data-callout="teorema"]::after {
+  content: "∎" !important;
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 18px !important;
+  font-size: 1.1em !important;
+  color: var(--math-teo-bd) !important;
+  opacity: 0.50 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  pointer-events: none !important;
+}
+.callout[data-callout="teorema"] .callout-title {
+  background-color: var(--math-teo-head) !important;
+  color: var(--math-teo-bd) !important;
+  font-size: 0.76em !important;
+  letter-spacing: 0.16em !important;
+  font-weight: 800 !important;
+  padding: 10px 20px 10px 12px !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-teo-bd) 18%, transparent) !important;
+  gap: 10px !important;
+}
+.theme-dark .callout[data-callout="teorema"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Crect x='1' y='1' width='16' height='16' rx='3' fill='%23BDD8E8' opacity='0.15'/%3E%3Crect x='1' y='1' width='16' height='16' rx='3' stroke='%23BDD8E8' stroke-width='1.2' fill='none'/%3E%3Ctext x='9' y='13.5' text-anchor='middle' font-family='Georgia,serif' font-size='10' font-weight='700' fill='%23BDD8E8'%3ETh%3C/text%3E%3C/svg%3E") !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+.theme-light .callout[data-callout="teorema"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Crect x='1' y='1' width='16' height='16' rx='3' fill='%23507040' opacity='0.15'/%3E%3Crect x='1' y='1' width='16' height='16' rx='3' stroke='%23507040' stroke-width='1.2' fill='none'/%3E%3Ctext x='9' y='13.5' text-anchor='middle' font-family='Georgia,serif' font-size='10' font-weight='700' fill='%23507040'%3ETh%3C/text%3E%3C/svg%3E") !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+.callout[data-callout="teorema"] .callout-content {
+  font-style: italic !important;
+  color: var(--math-teo-text) !important;
+  line-height: 2.0 !important;
+  padding: 16px 22px 32px !important;
+  font-size: 1.02em !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DEMOSTRACIÓN
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="demostracion"],
+.callout[data-callout="demo"],
+.callout[data-callout="proof"] {
+  background-color: var(--math-demo-bg) !important;
+  border-left: 4px dashed var(--math-demo-bd) !important;
+  border-top: 1px dashed color-mix(in srgb, var(--math-demo-bd) 22%, transparent) !important;
+  border-right: 1px dashed color-mix(in srgb, var(--math-demo-bd) 12%, transparent) !important;
+  border-bottom: 1px dashed color-mix(in srgb, var(--math-demo-bd) 12%, transparent) !important;
+  border-radius: 0 10px 10px 0 !important;
+  margin: 22px 0 !important;
+  box-shadow: var(--shadow-float) !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+.callout[data-callout="demostracion"]::after,
+.callout[data-callout="demo"]::after,
+.callout[data-callout="proof"]::after {
+  content: "□" !important;
+  display: block !important;
+  text-align: right !important;
+  color: var(--math-demo-bd) !important;
+  font-size: 1.05em !important;
+  padding: 0 18px 12px !important;
+  opacity: 0.50 !important;
+  font-family: Georgia, serif !important;
+}
+.callout[data-callout="demostracion"] .callout-title,
+.callout[data-callout="demo"] .callout-title,
+.callout[data-callout="proof"] .callout-title {
+  color: var(--math-demo-bd) !important;
+  background-color: transparent !important;
+  font-style: italic !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 600 !important;
+  font-size: 0.92em !important;
+  padding: 12px 16px 10px !important;
+}
+.theme-dark .callout[data-callout="demostracion"] .callout-title::before,
+.theme-dark .callout[data-callout="demo"] .callout-title::before,
+.theme-dark .callout[data-callout="proof"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M4 14 L12 3 Q14 1 16 3 L14 5 Q16 3 14 5 L6 16 Z' stroke='%236E8DAA' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M12 3 L14 5' stroke='%236E8DAA' stroke-width='1.2'/%3E%3Cpath d='M4 14 L3 16 L5.5 15.5 Z' fill='%236E8DAA'/%3E%3Cpath d='M6 12 Q8 10 10 9' stroke='%236E8DAA' stroke-width='0.8' stroke-dasharray='1.5 1.5' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="demostracion"] .callout-title::before,
+.theme-light .callout[data-callout="demo"] .callout-title::before,
+.theme-light .callout[data-callout="proof"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M4 14 L12 3 Q14 1 16 3 L14 5 Q16 3 14 5 L6 16 Z' stroke='%236A3E18' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M12 3 L14 5' stroke='%236A3E18' stroke-width='1.2'/%3E%3Cpath d='M4 14 L3 16 L5.5 15.5 Z' fill='%236A3E18'/%3E%3Cpath d='M6 12 Q8 10 10 9' stroke='%236A3E18' stroke-width='0.8' stroke-dasharray='1.5 1.5' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.callout[data-callout="demostracion"] .callout-content,
+.callout[data-callout="demo"] .callout-content,
+.callout[data-callout="proof"] .callout-content {
+  color: var(--math-demo-text) !important;
+  line-height: 2.05 !important;
+  font-size: 0.97em !important;
+  padding: 6px 20px 4px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TEORÍA
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="teoria"] {
+  background-color: var(--math-teoria-bg) !important;
+  border: none !important;
+  border-radius: 0 10px 10px 0 !important;
+  margin: 20px 0 !important;
+  padding-left: 0 !important;
+  box-shadow: none !important;
+  position: relative !important;
+}
+.callout[data-callout="teoria"]::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important; top: 0 !important; bottom: 0 !important;
+  width: 4px !important;
+  background: linear-gradient(to bottom,
+    var(--math-teoria-st) 0%,
+    color-mix(in srgb, var(--math-teoria-st) 30%, transparent) 70%,
+    transparent 100%) !important;
+  border-radius: 4px 0 0 4px !important;
+}
+.callout[data-callout="teoria"] .callout-title {
+  color: var(--math-teoria-st) !important;
+  background-color: transparent !important;
+  font-size: 0.75em !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.16em !important;
+  font-weight: 700 !important;
+  padding: 14px 16px 8px 20px !important;
+}
+.theme-dark .callout[data-callout="teoria"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M1 9 Q3 6 5 9 Q7 12 9 9 Q11 6 13 9 Q15 12 17 9' stroke='%236E8DAA' stroke-width='1.4' stroke-linecap='round' fill='none'/%3E%3Cpath d='M1 13 Q3 11 5 13 Q7 15 9 13 Q11 11 13 13 Q15 15 17 13' stroke='%236E8DAA' stroke-width='0.8' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M1 5 Q3 3 5 5 Q7 7 9 5 Q11 3 13 5 Q15 7 17 5' stroke='%236E8DAA' stroke-width='0.6' stroke-linecap='round' fill='none' opacity='0.3'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="teoria"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M1 9 Q3 6 5 9 Q7 12 9 9 Q11 6 13 9 Q15 12 17 9' stroke='%236A8858' stroke-width='1.4' stroke-linecap='round' fill='none'/%3E%3Cpath d='M1 13 Q3 11 5 13 Q7 15 9 13 Q11 11 13 13 Q15 15 17 13' stroke='%236A8858' stroke-width='0.8' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M1 5 Q3 3 5 5 Q7 7 9 5 Q11 3 13 5 Q15 7 17 5' stroke='%236A8858' stroke-width='0.6' stroke-linecap='round' fill='none' opacity='0.3'/%3E%3C/svg%3E") !important;
+}
+.callout[data-callout="teoria"] .callout-content {
+  color: var(--math-teoria-tx) !important;
+  font-size: 0.96em !important;
+  line-height: 1.90 !important;
+  padding: 4px 18px 18px 20px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DEFINICIÓN
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="definicion"],
+.callout[data-callout="def"] {
+  background-color: var(--math-def-bg) !important;
+  border-left: 5px solid var(--math-def-bd) !important;
+  border-top: 1px solid color-mix(in srgb, var(--math-def-bd) 24%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--math-def-bd) 14%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-def-bd) 14%, transparent) !important;
+  border-radius: 3px 10px 10px 3px !important;
+  margin: 22px 0 !important;
+  box-shadow: var(--shadow-float) !important;
+}
+.callout[data-callout="definicion"] .callout-title,
+.callout[data-callout="def"] .callout-title {
+  color: var(--math-def-bd) !important;
+  background-color: color-mix(in srgb, var(--math-def-bd) 09%, transparent) !important;
+  font-size: 0.76em !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 800 !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-def-bd) 18%, transparent) !important;
+  padding: 10px 16px !important;
+}
+.theme-dark .callout[data-callout="definicion"] .callout-title::before,
+.theme-dark .callout[data-callout="def"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 4 L9 15' stroke='%236E8DAA' stroke-width='1.2'/%3E%3Cpath d='M9 4 Q6 3 2 4 L2 14 Q6 13 9 15' stroke='%236E8DAA' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M9 4 Q12 3 16 4 L16 14 Q12 13 9 15' stroke='%236E8DAA' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cline x1='4' y1='7' x2='7' y2='7' stroke='%236E8DAA' stroke-width='0.9' stroke-linecap='round'/%3E%3Cline x1='4' y1='9' x2='7' y2='9' stroke='%236E8DAA' stroke-width='0.9' stroke-linecap='round'/%3E%3Cline x1='4' y1='11' x2='6' y2='11' stroke='%236E8DAA' stroke-width='0.9' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="definicion"] .callout-title::before,
+.theme-light .callout[data-callout="def"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M9 4 L9 15' stroke='%23486488' stroke-width='1.2'/%3E%3Cpath d='M9 4 Q6 3 2 4 L2 14 Q6 13 9 15' stroke='%23486488' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M9 4 Q12 3 16 4 L16 14 Q12 13 9 15' stroke='%23486488' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cline x1='4' y1='7' x2='7' y2='7' stroke='%23486488' stroke-width='0.9' stroke-linecap='round'/%3E%3Cline x1='4' y1='9' x2='7' y2='9' stroke='%23486488' stroke-width='0.9' stroke-linecap='round'/%3E%3Cline x1='4' y1='11' x2='6' y2='11' stroke='%23486488' stroke-width='0.9' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+/* FIX: definicion/def faltaba .callout-content color explícito */
+.callout[data-callout="definicion"] .callout-content,
+.callout[data-callout="def"] .callout-content {
+  color: var(--text-primary) !important;
+  line-height: 1.95 !important;
+  padding: 12px 20px 16px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   COROLARIO
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="corolario"] {
+  background-color: color-mix(in srgb, var(--math-teo-bd) 06%, transparent) !important;
+  border-left: 4px solid var(--math-teo-bd) !important;
+  border-top: 1px solid color-mix(in srgb, var(--math-teo-bd) 18%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--math-teo-bd) 10%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-teo-bd) 10%, transparent) !important;
+  border-radius: 3px 10px 10px 3px !important;
+  margin: 20px 0 !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.callout[data-callout="corolario"] .callout-title {
+  color: var(--math-teo-bd) !important;
+  background-color: color-mix(in srgb, var(--math-teo-bd) 07%, transparent) !important;
+  font-size: 0.76em !important;
+  letter-spacing: 0.14em !important;
+}
+.theme-dark .callout[data-callout="corolario"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Crect x='1' y='4' width='9' height='9' rx='1.5' stroke='%23BDD8E8' stroke-width='1.2'/%3E%3Cpath d='M10 8.5 L17 8.5 M14 5.5 L17 8.5 L14 11.5' stroke='%23BDD8E8' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="corolario"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Crect x='1' y='4' width='9' height='9' rx='1.5' stroke='%23507040' stroke-width='1.2'/%3E%3Cpath d='M10 8.5 L17 8.5 M14 5.5 L17 8.5 L14 11.5' stroke='%23507040' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+/* FIX: faltaba .callout-content color */
+.callout[data-callout="corolario"] .callout-content {
+  color: var(--text-secondary) !important;
+  line-height: 1.90 !important;
+  padding: 10px 18px 14px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LEMA
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="lema"] {
+  background-color: transparent !important;
+  border-left: 3px solid var(--accent-4) !important;
+  border-top: 1px solid color-mix(in srgb, var(--accent-4) 18%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--accent-4) 10%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-4) 10%, transparent) !important;
+  border-radius: 0 8px 8px 0 !important;
+  margin: 16px 0 !important;
+  box-shadow: none !important;
+}
+.callout[data-callout="lema"] .callout-title {
+  color: var(--accent-4) !important;
+  background-color: transparent !important;
+  font-size: 0.76em !important;
+  letter-spacing: 0.13em !important;
+}
+.theme-dark .callout[data-callout="lema"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='3' stroke='%23425A73' stroke-width='1.3'/%3E%3Ccircle cx='3' cy='4' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3Ccircle cx='15' cy='4' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3Ccircle cx='3' cy='14' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3Ccircle cx='15' cy='14' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3Cline x1='4' y1='5' x2='7' y2='7' stroke='%23425A73' stroke-width='0.9'/%3E%3Cline x1='14' y1='5' x2='11' y2='7' stroke='%23425A73' stroke-width='0.9'/%3E%3Cline x1='4' y1='13' x2='7' y2='11' stroke='%23425A73' stroke-width='0.9'/%3E%3Cline x1='14' y1='13' x2='11' y2='11' stroke='%23425A73' stroke-width='0.9'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="lema"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='3' stroke='%232E4824' stroke-width='1.3'/%3E%3Ccircle cx='3' cy='4' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3Ccircle cx='15' cy='4' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3Ccircle cx='3' cy='14' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3Ccircle cx='15' cy='14' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3Cline x1='4' y1='5' x2='7' y2='7' stroke='%232E4824' stroke-width='0.9'/%3E%3Cline x1='14' y1='5' x2='11' y2='7' stroke='%232E4824' stroke-width='0.9'/%3E%3Cline x1='4' y1='13' x2='7' y2='11' stroke='%232E4824' stroke-width='0.9'/%3E%3Cline x1='14' y1='13' x2='11' y2='11' stroke='%232E4824' stroke-width='0.9'/%3E%3C/svg%3E") !important;
+}
+/* FIX: faltaba .callout-content color */
+.callout[data-callout="lema"] .callout-content {
+  color: var(--text-secondary) !important;
+  line-height: 1.88 !important;
+  padding: 8px 16px 12px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PROPOSICIÓN
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="proposicion"],
+.callout[data-callout="prop"] {
+  background-color: color-mix(in srgb, var(--accent-1) 06%, transparent) !important;
+  border-left: 4px solid var(--accent-1) !important;
+  border-top: 1px solid color-mix(in srgb, var(--accent-1) 20%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--accent-1) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-1) 12%, transparent) !important;
+  border-radius: 3px 10px 10px 3px !important;
+  margin: 20px 0 !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.callout[data-callout="proposicion"] .callout-title,
+.callout[data-callout="prop"] .callout-title {
+  color: var(--accent-1) !important;
+  background-color: color-mix(in srgb, var(--accent-1) 08%, transparent) !important;
+  font-size: 0.76em !important;
+  letter-spacing: 0.14em !important;
+}
+.theme-dark .callout[data-callout="proposicion"] .callout-title::before,
+.theme-dark .callout[data-callout="prop"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M2 14 L2 10 L7 10 L7 6 L12 6 L12 2 L16 2' stroke='%236E8DAA' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="proposicion"] .callout-title::before,
+.theme-light .callout[data-callout="prop"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M2 14 L2 10 L7 10 L7 6 L12 6 L12 2 L16 2' stroke='%23507040' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+/* FIX: faltaba .callout-content color */
+.callout[data-callout="proposicion"] .callout-content,
+.callout[data-callout="prop"] .callout-content {
+  color: var(--text-secondary) !important;
+  line-height: 1.90 !important;
+  padding: 10px 18px 14px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   AXIOMA
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="axioma"] {
+  background-color: var(--math-teo-bg) !important;
+  border-left: 6px double var(--math-teo-bd) !important;
+  border-top: 1px solid color-mix(in srgb, var(--math-teo-bd) 20%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--math-teo-bd) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-teo-bd) 12%, transparent) !important;
+  border-radius: 3px 12px 12px 3px !important;
+  margin: 28px 0 !important;
+  box-shadow: var(--shadow-deep) !important;
+}
+.callout[data-callout="axioma"] .callout-title {
+  color: var(--math-teo-bd) !important;
+  background-color: var(--math-teo-head) !important;
+  font-size: 0.76em !important;
+  letter-spacing: 0.16em !important;
+  font-weight: 800 !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--math-teo-bd) 20%, transparent) !important;
+}
+.theme-dark .callout[data-callout="axioma"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Crect x='4' y='13' width='10' height='2.5' rx='0.5' fill='%23BDD8E8' opacity='0.4'/%3E%3Crect x='4' y='13' width='10' height='2.5' rx='0.5' stroke='%23BDD8E8' stroke-width='0.8'/%3E%3Crect x='6' y='2' width='2.5' height='11' rx='0.5' stroke='%23BDD8E8' stroke-width='1.1'/%3E%3Crect x='9.5' y='2' width='2.5' height='11' rx='0.5' stroke='%23BDD8E8' stroke-width='1.1'/%3E%3Cpath d='M5 3 L13 3' stroke='%23BDD8E8' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+.theme-light .callout[data-callout="axioma"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Crect x='4' y='13' width='10' height='2.5' rx='0.5' fill='%23507040' opacity='0.3'/%3E%3Crect x='4' y='13' width='10' height='2.5' rx='0.5' stroke='%23507040' stroke-width='0.8'/%3E%3Crect x='6' y='2' width='2.5' height='11' rx='0.5' stroke='%23507040' stroke-width='1.1'/%3E%3Crect x='9.5' y='2' width='2.5' height='11' rx='0.5' stroke='%23507040' stroke-width='1.1'/%3E%3Cpath d='M5 3 L13 3' stroke='%23507040' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+/* FIX: faltaba .callout-content color */
+.callout[data-callout="axioma"] .callout-content {
+  color: var(--math-teo-text) !important;
+  font-style: italic !important;
+  line-height: 2.0 !important;
+  padding: 14px 22px 20px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EJEMPLO
+   ══════════════════════════════════════════════════════════════ */
+.callout[data-callout="ejemplo"],
+.callout[data-callout="ej"] {
+  background-color: var(--co-example-bg) !important;
+  border-left: 3px solid var(--co-example-bd) !important;
+  border-top: 1px solid color-mix(in srgb, var(--co-example-bd) 20%, transparent) !important;
+  border-right: 1px solid color-mix(in srgb, var(--co-example-bd) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--co-example-bd) 12%, transparent) !important;
+  border-radius: 0 8px 8px 0 !important;
+  margin: 16px 0 !important;
+  box-shadow: none !important;
+}
+.callout[data-callout="ejemplo"] .callout-title,
+.callout[data-callout="ej"] .callout-title {
+  color: var(--co-example-bd) !important;
+  background-color: transparent !important;
+  font-size: 0.78em !important;
+  letter-spacing: 0.10em !important;
+}
+.theme-dark .callout[data-callout="ejemplo"] .callout-title::before,
+.theme-dark .callout[data-callout="ej"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M2 9 Q2 4 9 4 Q14 4 15 9' stroke='%23425A73' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M12 6 L15 9 L12 12' stroke='%23425A73' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='5' cy='13' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3Ccircle cx='9' cy='15' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3Ccircle cx='13' cy='13' r='1.5' stroke='%23425A73' stroke-width='1'/%3E%3C/svg%3E") !important;
+}
+.theme-light .callout[data-callout="ejemplo"] .callout-title::before,
+.theme-light .callout[data-callout="ej"] .callout-title::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M2 9 Q2 4 9 4 Q14 4 15 9' stroke='%232E4824' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M12 6 L15 9 L12 12' stroke='%232E4824' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='5' cy='13' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3Ccircle cx='9' cy='15' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3Ccircle cx='13' cy='13' r='1.5' stroke='%232E4824' stroke-width='1'/%3E%3C/svg%3E") !important;
+}
+/* FIX: faltaba .callout-content color */
+.callout[data-callout="ejemplo"] .callout-content,
+.callout[data-callout="ej"] .callout-content {
+  color: var(--text-secondary) !important;
+  line-height: 1.88 !important;
+  padding: 8px 16px 12px !important;
+}
+
+
+
+
+
+
+/* ╔═══════════════════════════════════════════════════════════════════╗
+   ║  OCEAN-ICE & FOREST  ·  Parche v5.2                              ║
+   ║  Añadir al FINAL de tu theme.css                                 ║
+   ╠═══════════════════════════════════════════════════════════════════╣
+   ║  CAMBIOS v5.2:                                                   ║
+   ║  · §A  Archivos embebidos e imágenes — visual mejorada           ║
+   ║  · §B  Fix text-transform en callouts matemáticos                ║
+   ║        (teorema/demo/def/corolario/lema/prop/axioma/ejemplo)     ║
+   ║  · §C  Fix indentación — listas dentro de callouts               ║
+   ╚═══════════════════════════════════════════════════════════════════╝ */
+
+
+/* §A ══════════════════════════════════════════════════════════════
+   ARCHIVOS EMBEBIDOS · Imágenes, PDFs, descargables, enlaces
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Imágenes embebidas ─────────────────────────────────────── */
+.markdown-preview-view img {
+  border-radius: 10px !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-float) !important;
+  display: block !important;
+  margin: 22px auto !important;
+  max-width: 100% !important;
+  transition: box-shadow 0.25s, transform 0.25s !important;
+}
+.markdown-preview-view img:hover {
+  box-shadow: var(--shadow-deep) !important;
+  transform: scale(1.012) !important;
+}
+
+
+
+/* ── PDF embebido (<iframe> que genera Obsidian) ────────────── */
+.markdown-preview-view iframe {
+  border-radius: 10px !important;
+  border: 1px solid var(--border-medium) !important;
+  box-shadow: var(--shadow-float) !important;
+  display: block !important;
+  margin: 22px auto !important;
+  width: 100% !important;
+  min-height: 520px !important;
+}
+
+/* ── Bloque de archivo embebido (embed genérico) ────────────── */
+.markdown-preview-view .file-embed,
+.markdown-preview-view .internal-embed.file-embed {
+  display: block !important;
+  background-color: var(--bg-highlight) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-left: 4px solid var(--accent-1) !important;
+  border-radius: 4px 10px 10px 4px !important;
+  padding: 14px 18px !important;
+  margin: 20px 0 !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.92em !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* ── Nota embebida (transclusion) ───────────────────────────── */
+.markdown-preview-view .internal-embed.markdown-embed {
+  border-radius: 10px !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-left: 4px solid var(--accent-primary) !important;
+  background-color: var(--bg-highlight) !important;
+  margin: 22px 0 !important;
+  padding: 0 !important;
+  box-shadow: var(--shadow-float) !important;
+  overflow: hidden !important;
+}
+.markdown-preview-view .internal-embed.markdown-embed .markdown-embed-title {
+  background-color: color-mix(in srgb, var(--accent-primary) 10%, transparent) !important;
+  color: var(--accent-primary) !important;
+  font-size: 0.75em !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  padding: 8px 16px !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+.markdown-preview-view .internal-embed.markdown-embed .markdown-embed-content {
+  padding: 12px 18px 16px !important;
+}
+
+/* ── Enlace externo con icono ───────────────────────────────── */
+.markdown-preview-view a.external-link {
+  color: var(--link-color) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent !important;
+  transition: color 0.2s, border-color 0.2s !important;
+  padding-right: 0 !important; /* evita salto por el ::after */
+}
+.markdown-preview-view a.external-link::after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 11px !important;
+  height: 11px !important;
+  margin-left: 4px !important;
+  vertical-align: middle !important;
+  opacity: 0.55 !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  transition: opacity 0.2s !important;
+}
+.theme-dark .markdown-preview-view a.external-link::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7' stroke='%2387ADC6' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M7 1h4v4' stroke='%2387ADC6' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11 1L5.5 6.5' stroke='%2387ADC6' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .markdown-preview-view a.external-link::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7' stroke='%23507040' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M7 1h4v4' stroke='%23507040' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11 1L5.5 6.5' stroke='%23507040' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.markdown-preview-view a.external-link:hover::after { opacity: 1 !important; }
+
+/* ── Enlace de descarga (archivo adjunto local) ─────────────── */
+.markdown-preview-view a[href$=".pdf"],
+.markdown-preview-view a[href$=".zip"],
+.markdown-preview-view a[href$=".rar"],
+.markdown-preview-view a[href$=".docx"],
+.markdown-preview-view a[href$=".xlsx"],
+.markdown-preview-view a[href$=".pptx"],
+.markdown-preview-view a[href$=".csv"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background-color: var(--bg-highlight) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: 6px !important;
+  padding: 3px 10px 3px 8px !important;
+  font-size: 0.88em !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: background 0.18s, box-shadow 0.18s !important;
+  vertical-align: middle !important;
+}
+.markdown-preview-view a[href$=".pdf"]:hover,
+.markdown-preview-view a[href$=".zip"]:hover,
+.markdown-preview-view a[href$=".rar"]:hover,
+.markdown-preview-view a[href$=".docx"]:hover,
+.markdown-preview-view a[href$=".xlsx"]:hover,
+.markdown-preview-view a[href$=".pptx"]:hover,
+.markdown-preview-view a[href$=".csv"]:hover {
+  background-color: var(--sidebar-active) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+/* Iconito de descarga antes del texto */
+.markdown-preview-view a[href$=".pdf"]::before,
+.markdown-preview-view a[href$=".zip"]::before,
+.markdown-preview-view a[href$=".rar"]::before,
+.markdown-preview-view a[href$=".docx"]::before,
+.markdown-preview-view a[href$=".xlsx"]::before,
+.markdown-preview-view a[href$=".pptx"]::before,
+.markdown-preview-view a[href$=".csv"]::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 13px !important;
+  height: 13px !important;
+  flex-shrink: 0 !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+.theme-dark .markdown-preview-view a[href$=".pdf"]::before,
+.theme-dark .markdown-preview-view a[href$=".zip"]::before,
+.theme-dark .markdown-preview-view a[href$=".rar"]::before,
+.theme-dark .markdown-preview-view a[href$=".docx"]::before,
+.theme-dark .markdown-preview-view a[href$=".xlsx"]::before,
+.theme-dark .markdown-preview-view a[href$=".pptx"]::before,
+.theme-dark .markdown-preview-view a[href$=".csv"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' fill='none'%3E%3Cpath d='M6.5 1v7M4 6l2.5 2.5L9 6' stroke='%2387ADC6' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 10h9' stroke='%2387ADC6' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+.theme-light .markdown-preview-view a[href$=".pdf"]::before,
+.theme-light .markdown-preview-view a[href$=".zip"]::before,
+.theme-light .markdown-preview-view a[href$=".rar"]::before,
+.theme-light .markdown-preview-view a[href$=".docx"]::before,
+.theme-light .markdown-preview-view a[href$=".xlsx"]::before,
+.theme-light .markdown-preview-view a[href$=".pptx"]::before,
+.theme-light .markdown-preview-view a[href$=".csv"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' fill='none'%3E%3Cpath d='M6.5 1v7M4 6l2.5 2.5L9 6' stroke='%23507040' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 10h9' stroke='%23507040' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+
+/* §B ══════════════════════════════════════════════════════════════
+   FIX text-transform EN CALLOUTS MATEMÁTICOS
+   Los callouts base tienen text-transform: uppercase en .callout-title.
+   Los entornos matemáticos que lo heredan no deben convertir todo a
+   mayúsculas porque δ ≠ Δ, etc.  Sobreescribimos solo el título.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Entornos que tienen contenido matemático sensible a case */
+.callout[data-callout="teorema"]    .callout-title,
+.callout[data-callout="demostracion"] .callout-title,
+.callout[data-callout="demo"]       .callout-title,
+.callout[data-callout="proof"]      .callout-title,
+.callout[data-callout="teoria"]     .callout-title,
+.callout[data-callout="definicion"] .callout-title,
+.callout[data-callout="def"]        .callout-title,
+.callout[data-callout="corolario"]  .callout-title,
+.callout[data-callout="lema"]       .callout-title,
+.callout[data-callout="proposicion"] .callout-title,
+.callout[data-callout="prop"]       .callout-title,
+.callout[data-callout="axioma"]     .callout-title,
+.callout[data-callout="ejemplo"]    .callout-title,
+.callout[data-callout="ej"]         .callout-title {
+  /* Preservar capitalización original del texto */
+  text-transform: none !important;
+}
+
+/* El contenido matemático tampoco debe forzar mayúsculas */
+.callout[data-callout="teorema"]    .callout-content,
+.callout[data-callout="demostracion"] .callout-content,
+.callout[data-callout="demo"]       .callout-content,
+.callout[data-callout="proof"]      .callout-content,
+.callout[data-callout="teoria"]     .callout-content,
+.callout[data-callout="definicion"] .callout-content,
+.callout[data-callout="def"]        .callout-content,
+.callout[data-callout="corolario"]  .callout-content,
+.callout[data-callout="lema"]       .callout-content,
+.callout[data-callout="proposicion"] .callout-content,
+.callout[data-callout="prop"]       .callout-content,
+.callout[data-callout="axioma"]     .callout-content,
+.callout[data-callout="ejemplo"]    .callout-content,
+.callout[data-callout="ej"]         .callout-content {
+  text-transform: none !important;
+}
+
+/* Asegurar que MathJax dentro de callouts matemáticos
+   tampoco sufra transformaciones de texto */
+.callout[data-callout="teorema"] mjx-container,
+.callout[data-callout="demostracion"] mjx-container,
+.callout[data-callout="demo"] mjx-container,
+.callout[data-callout="proof"] mjx-container,
+.callout[data-callout="teoria"] mjx-container,
+.callout[data-callout="definicion"] mjx-container,
+.callout[data-callout="def"] mjx-container,
+.callout[data-callout="corolario"] mjx-container,
+.callout[data-callout="lema"] mjx-container,
+.callout[data-callout="proposicion"] mjx-container,
+.callout[data-callout="prop"] mjx-container,
+.callout[data-callout="axioma"] mjx-container,
+.callout[data-callout="ejemplo"] mjx-container,
+.callout[data-callout="ej"] mjx-container {
+  text-transform: none !important;
+}
+
+
+/* §C ══════════════════════════════════════════════════════════════
+   FIX INDENTACIÓN — Listas y viñetas dentro de callouts
+   El padding izquierdo del .callout-content (12-22px) consume
+   el espacio de indentación nativo de las listas. Lo reponemos.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Todas las listas dentro de cualquier callout */
+.callout .callout-content ul,
+.callout .callout-content ol {
+  padding-left: 1.6em !important;
+  margin: 6px 0 !important;
+}
+
+/* Listas anidadas */
+.callout .callout-content ul ul,
+.callout .callout-content ol ol,
+.callout .callout-content ul ol,
+.callout .callout-content ol ul {
+  padding-left: 1.4em !important;
+  margin: 2px 0 !important;
+}
+
+/* Ítems de lista — separación vertical */
+.callout .callout-content li {
+  margin: 3px 0 !important;
+  line-height: 1.80 !important;
+}
+
+/* Marcadores visibles y con color correcto */
+.callout .callout-content ul li::marker {
+  color: var(--accent-1) !important;
+}
+.callout .callout-content ol li::marker {
+  color: var(--accent-2) !important;
+  font-weight: 700 !important;
+}
+
+/* Casos específicos con padding izquierdo reducido (lema, teoría, ejemplo)
+   que necesitan un poco más de margen interno */
+.callout[data-callout="lema"]       .callout-content ul,
+.callout[data-callout="lema"]       .callout-content ol,
+.callout[data-callout="teoria"]     .callout-content ul,
+.callout[data-callout="teoria"]     .callout-content ol,
+.callout[data-callout="ejemplo"]    .callout-content ul,
+.callout[data-callout="ejemplo"]    .callout-content ol,
+.callout[data-callout="ej"]         .callout-content ul,
+.callout[data-callout="ej"]         .callout-content ol,
+.callout[data-callout="demostracion"] .callout-content ul,
+.callout[data-callout="demostracion"] .callout-content ol,
+.callout[data-callout="demo"]       .callout-content ul,
+.callout[data-callout="demo"]       .callout-content ol,
+.callout[data-callout="proof"]      .callout-content ul,
+.callout[data-callout="proof"]      .callout-content ol {
+  padding-left: 2em !important;
+}
+
+/* Blockquotes dentro de callouts — también necesitan margen */
+.callout .callout-content blockquote {
+  margin-left: 0.4em !important;
+  margin-right: 0 !important;
+}
