@@ -892,13 +892,27 @@ body,
 .callout-content pre,
 .callout-content figure[data-rehype-pretty-code-figure] > pre {
   max-width: 100% !important;
+  width: 100% !important;
   box-sizing: border-box !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.callout-content figure[data-rehype-pretty-code-figure] {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+.callout-content pre::-webkit-scrollbar {
+  height: 10px;
 }
 
 .callout-content img {
   max-width: 100% !important;
+  width: auto !important;
   height: auto !important;
 }
 
