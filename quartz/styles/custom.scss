@@ -853,7 +853,7 @@ body,
   padding: 0 !important;
   margin: 22px 0 !important;
   box-shadow: var(--shadow-float) !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   transition: box-shadow 0.2s !important;
 }
 .callout:hover {
@@ -886,6 +886,24 @@ body,
   padding: 12px 16px 15px !important;
   line-height: 1.82 !important;
   font-size: 0.97em !important;
+  overflow: visible !important;
+}
+
+.callout-content pre,
+.callout-content figure[data-rehype-pretty-code-figure] > pre {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+.callout-content img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.callout-content img:hover {
+  transform: none !important;
 }
 
 /* ══════════════════════════════════════════════════════════════
