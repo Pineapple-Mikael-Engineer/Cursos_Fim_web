@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Cursos FIM – Notas personales",
+    pageTitle: "Cursos FIM – con fe y café",
     pageTitleSuffix: "",
     enableSPA: false,
     enablePopovers: true,
