@@ -9,4 +9,88 @@
   display: none !important;
 }
 
+/* Theme 01 (solo versión light) */
+:root,
+:root[saved-theme="light"],
+:root[saved-theme="dark"] {
+  color-scheme: light;
 
+  /* palette */
+  --fo-cream: #f3f8ee;
+  --fo-soil: #d8e4cc;
+  --fo-oak: #2e1a08;
+  --fo-heartwood: #4a2810;
+  --fo-bark: #6a3e18;
+  --fo-forest: #2e4824;
+  --fo-fern: #507040;
+  --fo-moss: #6a8858;
+  --fo-stone: #9a9070;
+  --fo-amber: #b07828;
+
+  /* quartz tokens */
+  --light: var(--fo-cream);
+  --lightgray: #c4b898;
+  --gray: var(--fo-stone);
+  --darkgray: var(--fo-heartwood);
+  --dark: var(--fo-oak);
+  --secondary: var(--fo-fern);
+  --tertiary: var(--fo-moss);
+  --highlight: rgba(80, 112, 64, 0.12);
+  --textHighlight: rgba(80, 112, 64, 0.2);
+
+  background: var(--fo-soil);
+}
+
+body {
+  background: var(--fo-soil);
+  color: var(--fo-oak);
+}
+
+a {
+  color: var(--fo-fern);
+}
+
+a:hover {
+  color: var(--fo-bark);
+}
+
+h1 {
+  color: var(--fo-oak);
+}
+
+h2 {
+  color: var(--fo-heartwood);
+}
+
+h3 {
+  color: var(--fo-forest);
+}
+
+h4,
+h5 {
+  color: var(--fo-fern);
+}
+
+h6 {
+  color: var(--fo-amber);
+}
+
+.callout[data-callout="note"] {
+  --color: var(--fo-fern);
+  --border: rgba(80, 112, 64, 0.34);
+  --bg: rgba(80, 112, 64, 0.08);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"] {
+  --color: var(--fo-amber);
+  --border: rgba(176, 120, 40, 0.34);
+  --bg: rgba(176, 120, 40, 0.09);
+}
+
+.callout[data-callout="tip"],
+.callout[data-callout="hint"] {
+  --color: var(--fo-moss);
+  --border: rgba(106, 136, 88, 0.34);
+  --bg: rgba(106, 136, 88, 0.09);
+}
