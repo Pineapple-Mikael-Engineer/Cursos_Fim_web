@@ -148,6 +148,70 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
+function normalizeBlockquoteMathBlocks(src: string): string {
+  const lines = src.split("\n")
+  const out: string[] = []
+  let inBlockquoteMath = false
+  const isQuoteBlank = (line: string) => /^(\s*>\s*)$/.test(line)
+  const isQuoteNonEmpty = (line: string) => /^(\s*>\s*).+\S/.test(line)
+
+  for (const line of lines) {
+    const quoteMatch = line.match(/^(\s*>\s*)(.*)$/)
+
+    if (!quoteMatch) {
+      out.push(line)
+      continue
+    }
+
+    const [_, quotePrefix, quoteContent] = quoteMatch
+
+    if (!inBlockquoteMath) {
+      const startMatch = quoteContent.match(/^\$\$(.*)$/)
+      if (startMatch) {
+        const afterStart = startMatch[1] ?? ""
+        const previousLine = out[out.length - 1]
+        if (previousLine && isQuoteNonEmpty(previousLine) && !isQuoteBlank(previousLine)) {
+          out.push(`${quotePrefix}`)
+        }
+        const inlineEndMatch = afterStart.match(/^(.*)\$\$\s*$/)
+        out.push(`${quotePrefix}$$`)
+        if (inlineEndMatch) {
+          const middle = inlineEndMatch[1] ?? ""
+          if (middle.trim().length > 0) {
+            out.push(`${quotePrefix}${middle}`)
+          }
+          out.push(`${quotePrefix}$$`)
+          out.push(`${quotePrefix}`)
+        } else {
+          if (afterStart.trim().length > 0) {
+            out.push(`${quotePrefix}${afterStart}`)
+          }
+          inBlockquoteMath = true
+        }
+        continue
+      }
+      out.push(line)
+      continue
+    }
+
+    const endMatch = quoteContent.match(/^(.*)\$\$\s*$/)
+    if (endMatch) {
+      const beforeEnd = endMatch[1] ?? ""
+      if (beforeEnd.trim().length > 0) {
+        out.push(`${quotePrefix}${beforeEnd}`)
+      }
+      out.push(`${quotePrefix}$$`)
+      out.push(`${quotePrefix}`)
+      inBlockquoteMath = false
+      continue
+    }
+
+    out.push(line)
+  }
+
+  return out.join("\n")
+}
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -163,6 +227,18 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
       if (opts.comments) {
         src = src.replace(commentRegex, "")
       }
+
+      // normalize Obsidian-style display math inside blockquotes/callouts:
+      // > $$A = ...
+      // > ...
+      // > ...$$
+      // into
+      // > $$
+      // > A = ...
+      // > ...
+      // > ...
+      // > $$
+      src = normalizeBlockquoteMathBlocks(src)
 
       // pre-transform blockquotes
       if (opts.callouts) {
