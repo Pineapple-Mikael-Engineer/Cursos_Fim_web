@@ -260,9 +260,9 @@ export function renderPage(
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const direction = i18n(cfg.locale).direction ?? "ltr"
   const doc = (
-    <html lang={lang} dir={direction}>
+    <html lang={lang} dir={direction} class="theme-light">
       <Head {...componentData} />
-      <body data-slug={slug}>
+      <body data-slug={slug} class="theme-light markdown-preview-view">
         <div id="quartz-root" class="page">
           <Body {...componentData}>
             {LeftComponent}
