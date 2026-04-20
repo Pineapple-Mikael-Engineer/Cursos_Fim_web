@@ -729,12 +729,25 @@ body,
   border-radius: 10px !important;
   padding: 22px 26px !important;
   box-shadow: var(--shadow-float) !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
 }
 .markdown-preview-view pre code {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  color: var(--text-secondary) !important;
+  color: #e6edf3 !important;
+  display: block !important;
+  width: max-content !important;
+  min-width: 100% !important;
+  white-space: pre !important;
+}
+
+.markdown-preview-view pre code[class*="language-"],
+.markdown-preview-view pre[class*="language-"] code,
+.markdown-preview-view pre code[data-language] {
+  color: #e6edf3 !important;
 }
 
 .markdown-preview-view ul li,
