@@ -18,15 +18,24 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Fetch all history for git info
           submodules: true
+          token: ${{ secrets.SUBMODULES_TOKEN || secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Install Dependencies
         run: npm ci
+      - name: Prepare Obsidian theme
+        run: |
+          if [ -f ".obsidian/themes/theme_01.css" ]; then
+            cp ".obsidian/themes/theme_01.css" "quartz/static/theme_01.css"
+            echo "theme_01.css copied to quartz/static/theme_01.css"
+          else
+            echo "::warning::.obsidian/themes/theme_01.css was not found; build will continue without that stylesheet."
+          fi
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact

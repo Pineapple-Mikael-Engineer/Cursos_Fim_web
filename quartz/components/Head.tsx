@@ -83,6 +83,7 @@ export default (() => {
         )}
 
         <link rel="icon" href={iconPath} />
+        <link rel="stylesheet" href={joinSegments(baseDir, "theme_01.css")} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
 

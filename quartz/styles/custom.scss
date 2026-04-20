@@ -9,4 +9,11 @@
   display: none !important;
 }
 
+/* Forzar experiencia en tema claro */
+:root {
+  color-scheme: light;
+}
 
+html[saved-theme="dark"] body {
+  filter: none;
+}
