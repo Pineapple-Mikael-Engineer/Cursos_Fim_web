@@ -1182,6 +1182,11 @@ body,
 .markdown-preview-view .katex-display {
   display: block !important;
   margin: 1.2em 0 !important;
+  padding: 14px 20px !important;
+  border: 1px solid var(--math-formula-bd) !important;
+  border-radius: 10px !important;
+  background-color: var(--math-formula-bg) !important;
+  box-shadow: var(--shadow-sm) !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
 }
