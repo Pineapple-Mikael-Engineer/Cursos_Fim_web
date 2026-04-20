@@ -486,8 +486,10 @@ body,
 
 .markdown-preview-view .markdown-preview-sizer {
   max-width: 1025px !important;
+  width: min(1025px, 100%) !important;
   margin: 0 auto !important;
   padding: 48px 56px !important;
+  box-sizing: border-box !important;
 }
 .cm-content {
   max-width: 1020px !important;
@@ -689,6 +691,7 @@ body,
 .markdown-preview-view p {
   color: var(--text-primary) !important;
   line-height: 1.88 !important;
+  white-space: pre-line !important;
 }
 .markdown-preview-view strong {
   color: var(--text-primary) !important;
@@ -732,12 +735,13 @@ body,
   overflow-x: auto !important;
   overflow-y: hidden !important;
   max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 .markdown-preview-view pre code {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  color: #e6edf3 !important;
+  color: var(--text-secondary) !important;
   display: block !important;
   width: max-content !important;
   min-width: 100% !important;
@@ -747,7 +751,7 @@ body,
 .markdown-preview-view pre code[class*="language-"],
 .markdown-preview-view pre[class*="language-"] code,
 .markdown-preview-view pre code[data-language] {
-  color: #e6edf3 !important;
+  color: var(--text-secondary) !important;
 }
 
 .markdown-preview-view ul li,
@@ -1142,6 +1146,18 @@ body,
 /* ══════════════════════════════════════════════════════════════
    FÓRMULAS LaTeX
    ══════════════════════════════════════════════════════════════ */
+.markdown-preview-view .katex-display {
+  display: block !important;
+  margin: 1.2em 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+.markdown-preview-view .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100%;
+}
+
 .math.math-block {
   display: block !important;
   background-color: var(--math-formula-bg) !important;
@@ -1590,6 +1606,8 @@ body,
   display: block !important;
   margin: 22px auto !important;
   max-width: 100% !important;
+  height: auto !important;
+  box-sizing: border-box !important;
   transition:
     box-shadow 0.25s,
     transform 0.25s !important;
@@ -1648,6 +1666,13 @@ body,
 }
 .markdown-preview-view .internal-embed.markdown-embed .markdown-embed-content {
   padding: 12px 18px 16px !important;
+}
+
+@media (max-width: 900px) {
+  .markdown-preview-view .markdown-preview-sizer {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
 
 /* ── Enlace externo con icono ───────────────────────────────── */
