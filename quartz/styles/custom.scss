@@ -727,18 +727,9 @@ body,
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace !important;
 }
 
-.markdown-preview-view figure[data-rehype-pretty-code-figure] {
-  border: 1px solid var(--border-medium) !important;
-  border-radius: 12px !important;
-  background-color: color-mix(in srgb, var(--bg-note) 92%, var(--accent-1)) !important;
-  padding: 6px !important;
-  margin: 20px 0 !important;
-  box-shadow: var(--shadow-sm) !important;
-}
-
 .markdown-preview-view pre {
   background-color: var(--bg-code) !important;
-  border: 1px solid var(--border-medium) !important;
+  border: 1px solid var(--border-subtle) !important;
   border-radius: 10px !important;
   padding: 22px 26px !important;
   box-shadow: var(--shadow-float) !important;

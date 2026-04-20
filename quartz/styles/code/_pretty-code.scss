@@ -8,6 +8,7 @@
    ───────────────────────────────────────────── */
 figure[data-rehype-pretty-code-figure] > pre {
   background-color: #181926 !important; /* nord oscuro elegante */
+  border: 1px solid var(--border-subtle) !important;
   border-radius: 6px;
   padding: 1.2em 1.4em;
   margin: 1.6em 0;
