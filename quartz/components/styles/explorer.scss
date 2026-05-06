@@ -34,7 +34,11 @@
   border: 1px solid var(--lightgray);
   border-radius: 12px;
   background-color: var(--light);
-  padding: 0.5rem 0.6rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+
+  /* Mejora legibilidad en sidebar izquierdo */
+  min-width: 100%;
 
   min-height: 1.2rem;
   flex: 0 1 auto;
@@ -122,7 +126,7 @@ button.desktop-explorer {
   margin-top: 0.5rem;
   border: 1px solid var(--lightgray);
   border-radius: 10px;
-  background-color: color-mix(in srgb, var(--light) 94%, var(--secondary));
+  background-color: var(--light);
   padding: 0.35rem;
 
   & ul {
@@ -140,7 +144,8 @@ button.desktop-explorer {
       pointer-events: all;
       display: block;
       border-radius: 6px;
-      padding: 0.12rem 0.4rem;
+      padding: 0.2rem 0.55rem;
+      line-height: 1.45;
       overflow-wrap: anywhere;
 
       &.active {
