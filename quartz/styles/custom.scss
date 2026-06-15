@@ -1947,3 +1947,353 @@ body,
   margin-left: 0.4em !important;
   margin-right: 0 !important;
 }
+
+/* ╔═══════════════════════════════════════════════════════════════════╗
+   ║  MEJORAS VISUALES DEL SITIO QUARTZ  ·  Cursos FIM                   ║
+   ║  Afines al estilo Ocean Forest (verde bosque + crema + café).      ║
+   ║  §A Layout/espaciado  §B Fondo  §C Tarjeta central                 ║
+   ║  §D Explorer  §E Buscador  §F Grafo  §G Logo piñita                 ║
+   ╚═══════════════════════════════════════════════════════════════════╝ */
+
+/* ── §A · Layout: más aire central, sidebars pegados a los bordes ───── */
+
+/* Fuente base un poco más pequeña: como casi todo está en rem, esto encoge
+   el texto de forma uniforme y libera espacio horizontal, que aprovechamos
+   para ensanchar ambos sidebars y el centro. */
+html {
+  font-size: 15px;
+}
+
+.page {
+  /* El layout va centrado: al ensanchar la página, el sidebar izquierdo
+     se va más a la izquierda y el grafo (derecha) más a la derecha,
+     dejando un centro de lectura más amplio para las notas. */
+  max-width: 1900px;
+}
+
+@media all and (min-width: 1200px) {
+  .page > #quartz-body {
+    /* Columna izquierda más ancha (navegación) y derecha más estrecha
+       (el grafo no necesita tanto). El centro mantiene buen ancho. */
+    grid-template-columns: 470px auto 360px;
+    column-gap: 2rem;
+
+    /* Empuja cada barra hacia su borde reduciendo el padding exterior */
+    & .sidebar.left {
+      padding-left: 1rem;
+      padding-right: 1.5rem;
+      /* Arranca más arriba → más alto útil para el explorador */
+      padding-top: 2.5rem;
+    }
+    & .sidebar.right {
+      padding-left: 1.5rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+/* ── §B · Fondo que combina mejor con la paleta ─────────────────────── */
+body {
+  /* Crema un punto más profundo que el centro (#f3f8ee) para que la
+     columna de lectura "flote" sobre el fondo. */
+  background-color: #ebf2e2;
+  background-image:
+    /* puntitos sutiles tipo papel botánico */
+    radial-gradient(circle at 1px 1px, rgba(80, 112, 64, 0.06) 1px, transparent 0),
+    /* velo verde suave que cae desde arriba */
+    linear-gradient(180deg, rgba(106, 136, 88, 0.08), rgba(106, 136, 88, 0) 360px);
+  background-size:
+    24px 24px,
+    100% 100%;
+  background-attachment: fixed;
+}
+
+/* ── §C · Tarjeta central para las notas (solo escritorio) ──────────── */
+@media all and (min-width: 1200px) {
+  .page > #quartz-body > .center {
+    background-color: var(--light);
+    border: 1px solid color-mix(in srgb, var(--lightgray) 55%, transparent);
+    border-radius: 16px;
+    padding: 1.75rem 2.75rem 2.25rem;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 10px 34px rgba(46, 26, 8, 0.06);
+    box-sizing: border-box;
+  }
+}
+
+/* ── §D · Explorer: navegación más visual, alta y legible ───────────── */
+.explorer {
+  /* Ocupa el alto disponible del sidebar → se ven más archivos */
+  flex: 1 1 auto;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--secondary) 5%, var(--light)), var(--light));
+  box-shadow: 0 4px 18px rgba(46, 26, 8, 0.05);
+}
+
+button.desktop-explorer {
+  gap: 0.5rem;
+  letter-spacing: 0.01em;
+  padding: 0.15rem 0.15rem 0.4rem;
+
+  /* Logo piñita en el encabezado del explorador */
+  &::before {
+    content: "";
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+    background-image: url("static/Prueba_03.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 6px;
+    image-rendering: pixelated;
+    box-shadow: 0 1px 4px rgba(46, 26, 8, 0.18);
+  }
+
+  & h2 {
+    font-family: var(--headerFont);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+}
+
+.explorer-content {
+  border-radius: 12px;
+  padding: 0.5rem;
+
+  /* scrollbar discreta a juego con la paleta */
+  scrollbar-width: thin;
+  scrollbar-color: var(--lightgray) transparent;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--lightgray);
+    border-radius: 8px;
+  }
+
+  /* Archivos: un punto más grandes y aireados para leerlos mejor */
+  & ul li > a {
+    font-size: 0.92rem;
+    padding: 0.28rem 0.6rem;
+    line-height: 1.5;
+    border-radius: 7px;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      box-shadow 0.15s ease,
+      padding-left 0.15s ease;
+
+    &:hover {
+      opacity: 1;
+      background-color: var(--highlight);
+      padding-left: 0.85rem;
+      color: var(--secondary);
+    }
+  }
+
+  /* ▸ Nota ACTIVA: pastilla verde marcada + viñeta de piñita */
+  & ul li > a.active {
+    opacity: 1;
+    font-weight: 700;
+    color: var(--dark);
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--secondary) 24%, var(--light)),
+        color-mix(in srgb, var(--secondary) 9%, var(--light))
+      );
+    box-shadow: inset 3px 0 0 var(--secondary);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-right: 0.4rem;
+      vertical-align: -1px;
+      background-image: url("static/Prueba_03.png");
+      background-size: cover;
+      border-radius: 3px;
+      image-rendering: pixelated;
+    }
+  }
+
+  /* ◦ Notas HERMANAS (misma carpeta que la actual): acento tenue */
+  & ul:has(> li > a.active) > li > a:not(.active) {
+    opacity: 1;
+    color: var(--darkgray);
+    background-color: color-mix(in srgb, var(--secondary) 5%, transparent);
+    box-shadow: inset 2px 0 0 color-mix(in srgb, var(--secondary) 40%, transparent);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-right: 0.5rem;
+      vertical-align: 2px;
+      border-radius: 50%;
+      background-color: color-mix(in srgb, var(--secondary) 55%, transparent);
+    }
+  }
+}
+
+/* Carpetas: chip suave al pasar el cursor */
+.folder-container {
+  border-radius: 8px;
+  padding: 0.05rem 0.15rem;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--secondary) 8%, transparent);
+  }
+}
+
+/* Carpetas del camino hasta la nota actual: resaltadas para orientarte */
+.explorer-content li:has(a.active) > .folder-container {
+  & div > a,
+  & div > button > span {
+    color: var(--secondary);
+    font-weight: 700;
+  }
+}
+
+/* ── §E · Buscador más llamativo ────────────────────────────────────── */
+.search > .search-button {
+  border-radius: 10px;
+  border-color: color-mix(in srgb, var(--secondary) 35%, var(--lightgray));
+  background-color: var(--light);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+    background-color: color-mix(in srgb, var(--secondary) 6%, var(--light));
+    box-shadow: 0 2px 10px rgba(80, 112, 64, 0.12);
+  }
+
+  & svg .search-path {
+    stroke: var(--secondary);
+  }
+  & > p {
+    color: var(--secondary);
+    font-weight: 600;
+  }
+}
+
+/* Ventana de resultados de búsqueda */
+.search > .search-container > .search-space {
+  & > input {
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--secondary) 30%, var(--lightgray));
+
+    &:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(80, 112, 64, 0.15);
+    }
+  }
+
+  & > .search-layout {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  & .result-card:hover,
+  & .result-card:focus,
+  & .result-card.focus {
+    background: var(--highlight) !important;
+    box-shadow: inset 3px 0 0 var(--secondary);
+  }
+}
+
+/* ── §F · Grafo a juego con el explorer ─────────────────────────────── */
+.graph > .graph-outer {
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(46, 26, 8, 0.05);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--secondary) 5%, var(--light)), var(--light));
+}
+
+/* ── §G · Logo piñita (con gafas) junto al título del sitio ─────────── */
+.page-title a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+
+  &::before {
+    content: "";
+    width: 2.1rem;
+    height: 2.1rem;
+    flex-shrink: 0;
+    background-image: url("static/Prueba_03.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 9px;
+    image-rendering: pixelated;
+    box-shadow: 0 2px 8px rgba(46, 26, 8, 0.2);
+  }
+}
+
+/* ── §H · Que el math, código y tablas NO se corten ─────────────────── */
+
+/* Causa del "corte" de ecuaciones: base.scss aplica overflow-wrap a .katex,
+   lo que parte la fórmula inline a media línea (en títulos y párrafos).
+   Con nowrap, la ecuación se mantiene en una sola línea. */
+.katex {
+  white-space: nowrap;
+}
+
+/* KaTeX renderiza el math inline a 1.21em (más grande que el texto), lo que
+   además provoca desbordes más seguido. Lo compactamos para que combine mejor
+   con el texto y desborde menos. El display math conserva su tamaño. */
+article .katex {
+  font-size: 1.05em;
+}
+article .katex-display .katex {
+  font-size: 1.21em;
+}
+
+/* En los sidebars el math se ve limpio (sin el recuadro del cuerpo) */
+.toc .katex,
+.explorer .katex,
+.backlinks .katex {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 0.95em;
+}
+
+/* Contenido ancho → barra de desplazamiento horizontal (no recorte).
+   Aplica a ecuaciones en display, bloques de código y tablas grandes. */
+.katex-display,
+.table-container,
+article pre {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* scrollbar fina a juego con la paleta */
+  scrollbar-width: thin;
+  scrollbar-color: var(--lightgray) transparent;
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--lightgray);
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Tablas anchas: conservan su ancho natural y se desplazan, sin aplastarse */
+.table-container > table {
+  min-width: max-content;
+}
