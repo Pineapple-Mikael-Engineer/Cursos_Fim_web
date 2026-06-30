@@ -30,6 +30,18 @@ const defaultOptions: Options = {
     return node
   },
   sortFn: (a, b) => {
+    // Order by the `order` frontmatter field when present, falling back to
+    // an alphanumeric comparison of the display name.
+    const orderA = a.data?.order
+    const orderB = b.data?.order
+    if (typeof orderA === "number" && typeof orderB === "number") {
+      if (orderA !== orderB) return orderA - orderB
+    } else if (typeof orderA === "number") {
+      return -1
+    } else if (typeof orderB === "number") {
+      return 1
+    }
+
     return a.displayName.localeCompare(b.displayName, undefined, {
       numeric: true,
       sensitivity: "base",
